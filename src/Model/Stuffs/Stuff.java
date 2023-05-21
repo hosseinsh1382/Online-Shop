@@ -116,5 +116,35 @@ public abstract class Stuff implements Comparable {
                 ", count: " + count +
                 ", category: " + category;
     }
-    
+
+    @Override
+    public int compareTo(Object stuff) {
+        Stuff stuff2 = (Stuff) stuff;
+        // compare by name
+        if (this.getName().equals(stuff2.getName())) {
+            // compare by average rate
+            if (this.getAverageRate() < stuff2.getAverageRate())
+                return -1;
+            else if (this.getAverageRate() > stuff2.getAverageRate())
+                return 1;
+            else if (this.getAverageRate() == stuff2.getAverageRate()) {
+                // compare by price
+                if (this.getPrice() < stuff2.getPrice())
+                    return -1;
+                else if (this.getPrice() > this.getPrice())
+                    return 1;
+                else if (this.getPrice() == stuff2.getPrice()) {// compare by count
+
+                    if (this.getCount() < stuff2.getCount())
+                        return -1;
+                    else if (this.getCount() > stuff2.getCount())
+                        return 1;
+                    else if (this.getCount() == stuff2.getCount())
+                        return 0;
+
+                }
+            }
+        }
+        return this.getName().compareTo(stuff2.getName());
+    }
 }
