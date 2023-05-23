@@ -1,16 +1,17 @@
 package Model.Stuffs;
 
+import Model.Discount;
 import Model.User.Request.CommentRequest;
 import Model.Comment;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public abstract class Stuff implements Comparable {
     public enum Category {
         DIGITALSTUFF, STATIONARY, VEHICLE, FOOD
     }
 
+    private ArrayList<Discount> discounts;
     private String ID, name;
     private double price, averageRate, totalRate = 0;
     static int staticInt = 1000;
@@ -27,6 +28,7 @@ public abstract class Stuff implements Comparable {
         setID();
         comments = new ArrayList<>();
         commentRequests = new ArrayList<>();
+        this.discounts = new ArrayList<>();
     }
 
     // Setters
@@ -68,6 +70,11 @@ public abstract class Stuff implements Comparable {
 
 
     // Getters
+
+    public ArrayList<Discount> getDiscounts() {
+        return discounts;
+    }
+
     public int getRateCount() {
         return rateCount;
     }

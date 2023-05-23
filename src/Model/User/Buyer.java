@@ -2,6 +2,7 @@ package Model.User;
 
 import java.util.ArrayList;
 
+import Model.Discount;
 import Model.User.Request.IncreaseCreditRequest;
 import Model.Receipt;
 
@@ -9,15 +10,21 @@ public class Buyer extends User {
     private ArrayList<CartItem> cart;
     private ArrayList<Receipt> receipts;
     private IncreaseCreditRequest increaseCreditRequest;
+    private ArrayList<Discount> discounts;
     private double credit;
+
 
     public Buyer(String username, String password, String email, String phoneNo) {
         super(username, password, email, phoneNo, Roll.BUYER);
         this.receipts = new ArrayList<>();
         this.cart = new ArrayList<>();
         this.credit = 0;
+        this.discounts = new ArrayList<>();
     }
 
+    public ArrayList<Discount> getDiscounts() {
+        return discounts;
+    }
     public ArrayList<CartItem> getCart() {
         return cart;
     }

@@ -25,6 +25,10 @@ public class CartItem {
         return stuff;
     }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Override
     public String toString() {
         return "stuff: " + stuff +
