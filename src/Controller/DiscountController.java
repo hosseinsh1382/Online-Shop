@@ -29,6 +29,7 @@ public class DiscountController {
                         for (Stuff s : StuffController.getStuffs()) {
                             if (c.toString().equals(s.getCategory().toString())) {
                                 cartItem.setTotalPrice(cartItem.getTotalPrice() - (100 - d.getDiscount()));
+                                d.setCapacity(d.getCapacity() - 1);
                                 return;
                             }
                         }
@@ -46,6 +47,7 @@ public class DiscountController {
                 validation = checkDiscountValidation(d);
                 if (validation) {
                     cartItem.setTotalPrice(cartItem.getTotalPrice() - (100 - d.getDiscount()));
+                    d.setCapacity(d.getCapacity() - 1);
                     return;
                 }
             }
@@ -55,7 +57,7 @@ public class DiscountController {
 
     public static boolean checkDiscountValidation(Discount discount) throws DiscountException {
         if (discount.getExpireDate().after(new Date(System.currentTimeMillis()))) {
-            if (discount.getCapacity() > discount.getUsage()) {
+            if (discount.getCapacity() == 0) {
                 return true;
             }
             throw new DiscountFullCapacityException();

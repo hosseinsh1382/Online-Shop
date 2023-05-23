@@ -6,7 +6,7 @@ import java.util.Date;
 public class Discount {
     private double discount;
     private Date expireDate;
-    private int capacity, usage = 0;
+    private int capacity;
     private String discountCode;
     private ArrayList<Category> categories;
 
@@ -49,13 +49,6 @@ public class Discount {
         this.capacity = capacity;
     }
 
-    public int getUsage() {
-        return usage;
-    }
-
-    public void setUsage(int usage) {
-        this.usage = usage;
-    }
 
     public String getDiscountCode() {
         return discountCode;

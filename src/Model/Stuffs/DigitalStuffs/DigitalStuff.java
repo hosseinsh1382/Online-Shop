@@ -2,7 +2,7 @@ package Model.Stuffs.DigitalStuffs;
 
 import Model.Stuffs.Stuff;
 
-public abstract class DigitalStuff extends Stuff {
+public abstract class DigitalStuff extends Stuff{
     private double weight, width, height, length;
 
     public DigitalStuff(String name, double price, int count, double weight, double width, double height, double length) {
