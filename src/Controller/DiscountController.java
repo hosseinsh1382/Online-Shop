@@ -1,5 +1,9 @@
 package Controller;
 
+import Exceptions.DiscountException;
+import Exceptions.DiscountExpiredException;
+import Exceptions.DiscountFullCapacityException;
+import Exceptions.DiscountInvalidException;
 import Model.*;
 import Model.Stuffs.Stuff;
 import Model.User.Buyer;
@@ -79,7 +83,7 @@ public class DiscountController {
         addDiscountToBuyer(buyer, discountPercent, expireDate, categories);
     }
 
-/*    public static void discountForLeastBoughtCategory(Buyer buyer) {
+    public static void discountForLeastBoughtCategory(Buyer buyer, Date expireDate) {
         int stationaryCount = 0, foodCount = 0, vehicleCount = 0, digitalStuff = 0;
         for (Receipt r : buyer.getReceipts()) {
             for (CartItem c : r.getBoughtStuffs()) {
@@ -99,11 +103,27 @@ public class DiscountController {
                 }
             }
         }
-        if (stationaryCount < foodCount && stationaryCount < vehicleCount && stationaryCount < digitalStuff) {
-            double discountPercent = Math.random() * 100;
 
-            addDiscountToBuyer(buyer, discountPercent, new Date();
+        ArrayList<Discount.Category> categories = new ArrayList<>();
+        double discountPercent = Math.random() * 100;
+
+        if (stationaryCount < foodCount && stationaryCount < vehicleCount && stationaryCount < digitalStuff) {
+            categories.add(Discount.Category.STATIONARY);
         }
-    }*/
+
+        if (foodCount < stationaryCount && foodCount < vehicleCount && foodCount < digitalStuff) {
+            categories.add(Discount.Category.FOOD);
+        }
+
+        if (vehicleCount < foodCount && vehicleCount < stationaryCount && vehicleCount < digitalStuff) {
+            categories.add(Discount.Category.VEHICLE);
+        }
+
+        if (digitalStuff < foodCount && digitalStuff < vehicleCount && digitalStuff < stationaryCount) {
+            categories.add(Discount.Category.DIGITALSTUFF);
+        }
+        addDiscountToBuyer(buyer, discountPercent, expireDate, categories);
+
+    }
 
 }
