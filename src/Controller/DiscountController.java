@@ -1,9 +1,6 @@
 package Controller;
 
-import Exceptions.DiscountException;
-import Exceptions.DiscountExpiredException;
-import Exceptions.DiscountFullCapacityException;
-import Exceptions.DiscountInvalidException;
+import Exceptions.*;
 import Model.*;
 import Model.Stuffs.Stuff;
 import Model.User.Buyer;

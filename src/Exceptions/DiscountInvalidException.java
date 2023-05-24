@@ -1,4 +1,4 @@
-package Model;
+package Exceptions;
 
 public class DiscountInvalidException extends DiscountException {
     public DiscountInvalidException() {

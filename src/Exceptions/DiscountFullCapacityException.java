@@ -1,4 +1,4 @@
-package Model;
+package Exceptions;
 
 public class DiscountFullCapacityException extends DiscountException {
     public DiscountFullCapacityException() {

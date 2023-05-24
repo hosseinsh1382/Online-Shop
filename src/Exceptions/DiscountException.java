@@ -1,4 +1,4 @@
-package Model;
+package Exceptions;
 
 public class DiscountException extends Exception {
     public DiscountException(String message) {
