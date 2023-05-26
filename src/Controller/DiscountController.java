@@ -6,8 +6,10 @@ import Model.Stuffs.Stuff;
 import Model.User.Buyer;
 import Model.User.CartItem;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class DiscountController {
     public static void addUserDiscount(Discount discount, Buyer buyer) {
@@ -57,7 +59,7 @@ public class DiscountController {
     }
 
     public static boolean checkDiscountValidation(Discount discount) throws DiscountException {
-        if (discount.getExpireDate().after(new Date(System.currentTimeMillis()))) {
+        if (discount.getExpireDate().isAfter(LocalDate.now())) {
             if (discount.getCapacity() == 0) {
                 return true;
             }
@@ -66,12 +68,12 @@ public class DiscountController {
         throw new DiscountExpiredException();
     }
 
-    public static void addDiscountToBuyer(Buyer buyer, double discountPercent, Date expireDate, ArrayList<Discount.Category> categories) {
+    public static void addDiscountToBuyer(Buyer buyer, double discountPercent, LocalDate expireDate, ArrayList<Discount.Category> categories) {
         Discount discount = new Discount(discountPercent, expireDate, 1, categories);
         buyer.getDiscounts().add(discount);
     }
 
-    public static void addDiscountToBuyer(Buyer buyer, double discountPercent, Date expireDate) {
+    public static void addDiscountToBuyer(Buyer buyer, double discountPercent, LocalDate expireDate) {
         ArrayList<Discount.Category> categories = new ArrayList<>();
         categories.add(Discount.Category.VEHICLE);
         categories.add(Discount.Category.DIGITALSTUFF);
@@ -80,7 +82,7 @@ public class DiscountController {
         addDiscountToBuyer(buyer, discountPercent, expireDate, categories);
     }
 
-    public static void discountForLeastBoughtCategory(Buyer buyer, Date expireDate) {
+    public static void discountForLeastBoughtCategory(Buyer buyer, LocalDate expireDate) {
         int stationaryCount = 0, foodCount = 0, vehicleCount = 0, digitalStuff = 0;
         for (Receipt r : buyer.getReceipts()) {
             for (CartItem c : r.getBoughtStuffs()) {

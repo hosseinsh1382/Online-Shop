@@ -1,11 +1,12 @@
 package Model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Discount {
     private double discount;
-    private Date expireDate;
+    private LocalDate expireDate;
     private int capacity;
     private String discountCode;
     private ArrayList<Category> categories;
@@ -14,7 +15,7 @@ public class Discount {
         DIGITALSTUFF, STATIONARY, VEHICLE, FOOD
     }
 
-    public Discount(double discount, Date expireDate, int capacity, ArrayList<Category> categories) {
+    public Discount(double discount, LocalDate expireDate, int capacity, ArrayList<Category> categories) {
         this.discount = discount;
         this.expireDate = expireDate;
         this.capacity = capacity;
@@ -33,11 +34,11 @@ public class Discount {
         return categories;
     }
 
-    public Date getExpireDate() {
+    public LocalDate getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(LocalDate expireDate) {
         this.expireDate = expireDate;
     }
 

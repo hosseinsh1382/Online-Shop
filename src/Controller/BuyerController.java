@@ -1,12 +1,16 @@
 package Controller;
 
+import Exceptions.OutOfCreditException;
+import Model.Discount;
 import Model.Receipt;
 import Model.Stuffs.Stuff;
 import Model.User.Buyer;
 import Model.User.CartItem;
 import Model.User.Request.IncreaseCreditRequest;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,7 +62,7 @@ public class BuyerController {
         // update count of bought stuff
         boughtStuff.setCount(boughtStuff.getCount() - count);
 
-        ((Buyer)UserController.getLoggedInUser()).getCart().add(newStuff);
+        ((Buyer) UserController.getLoggedInUser()).getCart().add(newStuff);
         return "Added to cart";
     }
 
@@ -102,6 +106,38 @@ public class BuyerController {
         Matcher matcher = pattern.matcher(cvv2);
 
         return matcher.find();
+    }
+
+    public static Discount chanceCircle(Buyer buyer) throws OutOfCreditException {
+        int fee = 50;
+        if (buyer.getCredit() > fee) {
+            Random random = new Random();
+            int category = random.nextInt(0, 5);
+            double discountPercent = random.nextDouble(0, 100);
+            int extraDays = random.nextInt(1, 11);
+            LocalDate expireDate = LocalDate.now().plusDays(extraDays);
+            ArrayList<Discount.Category> categoryArrayList = new ArrayList<>();
+            switch (category) {
+                case 0:
+                    return null;
+                case 1:
+                    categoryArrayList.add(Discount.Category.DIGITALSTUFF);
+                    break;
+                case 2:
+                    categoryArrayList.add(Discount.Category.FOOD);
+                    break;
+                case 3:
+                    categoryArrayList.add(Discount.Category.STATIONARY);
+                    break;
+                case 4:
+                    categoryArrayList.add(Discount.Category.VEHICLE);
+                    break;
+            }
+            Discount discount = new Discount(discountPercent, expireDate, 1, categoryArrayList);
+            buyer.getDiscounts().add(discount);
+            return discount;
+        }
+        throw new OutOfCreditException();
     }
 
 }
