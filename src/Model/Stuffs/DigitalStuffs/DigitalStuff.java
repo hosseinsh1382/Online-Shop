@@ -1,9 +1,10 @@
 package Model.Stuffs.DigitalStuffs;
 
+import Model.IDiscountable;
 import Model.Stuffs.Stuff;
 
-public abstract class DigitalStuff extends Stuff{
-    private double weight, width, height, length;
+public abstract class DigitalStuff extends Stuff implements IDiscountable {
+    private double weight, width, height, length, discountPercent = 0;
 
     public DigitalStuff(String name, double price, int count, double weight, double width, double height, double length) {
         super(name, price, count, Category.DIGITALSTUFF);
@@ -45,6 +46,26 @@ public abstract class DigitalStuff extends Stuff{
         this.length = length;
     }
 
+    public double getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public void setDiscountPercent(double discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
+
+    @Override
+    public void addDiscount() {
+        this.setPrice(this.getPrice() * (100 - discountPercent));
+    }
+
+    @Override
+    public void removeDiscount() {
+        this.setDiscountPercent(0);
+        addDiscount();
+    }
+
     @Override
     public String toString() {
         return super.toString() +
@@ -53,4 +74,5 @@ public abstract class DigitalStuff extends Stuff{
                 ", height=" + height +
                 ", length=" + length;
     }
+
 }
