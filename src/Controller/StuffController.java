@@ -8,6 +8,7 @@ import Model.Stuffs.Stationary.*;
 import Model.Stuffs.Vehicle.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StuffController {
 
@@ -73,5 +74,9 @@ public class StuffController {
 
     public static void deleteStuff(Stuff stuff) {
         stuffs.remove(stuff);
+    }
+
+    public static void sortStuff() {
+        Arrays.sort(stuffs.toArray());
     }
 }
