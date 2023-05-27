@@ -3,7 +3,9 @@ package Model;
 import Model.Stuffs.Stuff;
 
 public interface IDiscountable {
-    public void addDiscount();
+    public void addDiscount(double discountPercent);
 
-    public void removeDiscount();
+    default public void removeDiscount() {
+        addDiscount(0);
+    }
 }

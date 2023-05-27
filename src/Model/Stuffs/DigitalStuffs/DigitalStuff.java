@@ -56,14 +56,13 @@ public abstract class DigitalStuff extends Stuff implements IDiscountable {
 
 
     @Override
-    public void addDiscount() {
-        this.setPrice(this.getPrice() * (100 - discountPercent));
+    public void addDiscount(double discountPercent) {
+        this.discountPercent = discountPercent;
     }
 
     @Override
-    public void removeDiscount() {
-        this.setDiscountPercent(0);
-        addDiscount();
+    public double getPrice() {
+        return super.getPrice() * (100 - discountPercent);
     }
 
     @Override
