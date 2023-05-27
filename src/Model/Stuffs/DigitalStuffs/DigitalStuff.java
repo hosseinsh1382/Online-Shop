@@ -4,7 +4,7 @@ import Model.IDiscountable;
 import Model.Stuffs.Stuff;
 
 public abstract class DigitalStuff extends Stuff implements IDiscountable {
-    private double weight, width, height, length, discountPercent = 0;
+    private double weight, width, height, length;
 
     public DigitalStuff(String name, double price, int count, double weight, double width, double height, double length) {
         super(name, price, count, Category.DIGITALSTUFF);
@@ -46,23 +46,10 @@ public abstract class DigitalStuff extends Stuff implements IDiscountable {
         this.length = length;
     }
 
-    public double getDiscountPercent() {
-        return discountPercent;
-    }
-
-    public void setDiscountPercent(double discountPercent) {
-        this.discountPercent = discountPercent;
-    }
-
 
     @Override
     public void addDiscount(double discountPercent) {
-        this.discountPercent = discountPercent;
-    }
-
-    @Override
-    public double getPrice() {
-        return super.getPrice() * (100 - discountPercent);
+        this.setPrice(this.getPrice() * 100 - discountPercent);
     }
 
     @Override
