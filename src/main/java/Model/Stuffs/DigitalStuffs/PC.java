@@ -27,9 +27,8 @@ public class PC extends DigitalStuff {
 
     @Override
     public String toString() {
-        return "PC{" +
+        return  super.toString()+
                 "CPUModel='" + CPUModel + '\'' +
-                ", RAMCapacity='" + RAMCapacity + '\'' +
-                "} " + super.toString();
+                ", RAMCapacity='" + RAMCapacity + '\'' ;
     }
 }

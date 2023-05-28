@@ -121,7 +121,7 @@ public abstract class Stuff implements Comparable {
                 ", price: " + price +
                 ", averageRate: " + averageRate +
                 ", count: " + count +
-                ", category: " + category;
+                ", category: " + category + ", ";
     }
 
     @Override
