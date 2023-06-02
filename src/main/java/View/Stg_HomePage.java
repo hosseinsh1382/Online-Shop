@@ -207,8 +207,6 @@ public class Stg_HomePage {
             vBox_Stuff.setBackground(new Background(new BackgroundFill(Color.web("#27374D"), new CornerRadii(10), new Insets(0))));
             vBox_Stuff.setCursor(Cursor.HAND);
 
-            TranslateTransition transition = new TranslateTransition();
-            transition.setDuration(Duration.seconds(1));
 
             ScaleTransition scaleTransition = new ScaleTransition();
             scaleTransition.setNode(vBox_Stuff);
