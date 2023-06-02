@@ -1,6 +1,7 @@
 package Controller;
 
 import Exceptions.OutOfCreditException;
+import Exceptions.OutOfStockCountException;
 import Model.Discount;
 import Model.Receipt;
 import Model.Stuffs.Stuff;
@@ -15,13 +16,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BuyerController {
-    public String increaseCredit(Buyer buyer, double extraCredit) {
+    public static String increaseCredit(Buyer buyer, double extraCredit) {
         IncreaseCreditRequest increaseCreditRequest = new IncreaseCreditRequest((Buyer) UserController.getLoggedInUser(), extraCredit);
         ((Buyer) UserController.getLoggedInUser()).setIncreaseCreditRequest(increaseCreditRequest);
         return "Request sent";
     }
 
-    public ArrayList<Stuff> filter(String category) {
+    public static ArrayList<Stuff> filter(String category) {
         ArrayList<Stuff> filteredStuffs = new ArrayList<>();
         for (Stuff s : StuffController.getStuffs())
             if (s.getCategory().toString().equalsIgnoreCase(category)) {
@@ -30,7 +31,7 @@ public class BuyerController {
         return filteredStuffs;
     }
 
-    public ArrayList<Stuff> filter(double low, double high) {
+    public static ArrayList<Stuff> filter(double low, double high) {
         ArrayList<Stuff> filteredStuffs = new ArrayList<>();
         for (Stuff s : StuffController.getStuffs())
             if (s.getPrice() > low && s.getPrice() < high)
@@ -39,7 +40,7 @@ public class BuyerController {
 
     }
 
-    public ArrayList<Stuff> filter(double rate) {
+    public static ArrayList<Stuff> filter(double rate) {
         ArrayList<Stuff> filteredStuffs = new ArrayList<>();
         for (Stuff s : StuffController.getStuffs())
             if (s.getAverageRate() >= rate)
@@ -47,7 +48,7 @@ public class BuyerController {
         return filteredStuffs;
     }
 
-    public ArrayList<Stuff> filter() {
+    public static ArrayList<Stuff> filter() {
         ArrayList<Stuff> filteredStuffs = new ArrayList<>();
         for (Stuff s : StuffController.getStuffs()) {
             if (s.getCount() > 0)
@@ -56,9 +57,11 @@ public class BuyerController {
         return filteredStuffs;
     }
 
-    public String buy(Stuff boughtStuff, int count) {
-        CartItem newStuff = new CartItem(boughtStuff, count);
+    public static String buy(Stuff boughtStuff, int count) throws OutOfStockCountException {
+        if (boughtStuff.getCount() < count)
+            throw new OutOfStockCountException();
 
+        CartItem newStuff = new CartItem(boughtStuff, count);
         // update count of bought stuff
         boughtStuff.setCount(boughtStuff.getCount() - count);
 
@@ -66,7 +69,7 @@ public class BuyerController {
         return "Added to cart";
     }
 
-    public String finalizeBuy() {
+    public static String finalizeBuy() {
         double price = 0;
         for (CartItem c : ((Buyer) UserController.getLoggedInUser()).getCart()) {
             price += c.getTotalPrice();
@@ -81,7 +84,7 @@ public class BuyerController {
         return "Not enough credit";
     }
 
-    public String cancelBuy() {
+    public static String cancelBuy() {
         for (CartItem c : ((Buyer) UserController.getLoggedInUser()).getCart()) {
             c.getStuff().increaseCount(c.getCount());
         }
@@ -89,7 +92,7 @@ public class BuyerController {
         return "Cancelled";
     }
 
-    public void signUp(String username, String password, String email, String phoneNo) {
+    public static void signUp(String username, String password, String email, String phoneNo) {
         Buyer newBuyer = new Buyer(username, password, email, phoneNo);
         UserController.getUsers().add(newBuyer);
     }

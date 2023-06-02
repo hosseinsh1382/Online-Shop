@@ -1,13 +1,13 @@
 package View;
 
 import Controller.StuffController;
+import Model.Comment;
+import Model.Stuffs.DigitalStuffs.DataStoring.SSD;
 import Model.Stuffs.DigitalStuffs.PC;
 import Model.Stuffs.Stuff;
-import javafx.animation.Animation;
+import Model.User.Buyer;
 import javafx.animation.ScaleTransition;
-import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -19,7 +19,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Shadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -27,32 +26,45 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class Stg_HomePage {
 
+    Stage stage = new Stage();
 
     public void show() {
 
         PC pc = new PC("a", 222, 2, 4, 4, 4, 2, "d", "2");
         PC pc2 = new PC("b", 222, 2, 4, 4, 4, 2, "d", "2");
+        SSD ssd = new SSD("jjh",123,3,32,23,23,23,2,32,43);
+        Buyer buyer = new Buyer("a", "s", "a", "923");
 
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
+        StuffController.getStuffs().add(ssd);
         StuffController.getStuffs().add(pc);
         StuffController.getStuffs().add(pc);
         StuffController.getStuffs().add(pc);
         StuffController.getStuffs().add(pc);
         StuffController.getStuffs().add(pc);
+        StuffController.getStuffs().add(pc2);
+        StuffController.getStuffs().add(pc2);
+        StuffController.getStuffs().add(pc2);
+        StuffController.getStuffs().add(pc2);
+        StuffController.getStuffs().add(pc);
+        StuffController.getStuffs().add(pc);
+        StuffController.getStuffs().add(pc);
+        StuffController.getStuffs().add(pc);
+        StuffController.getStuffs().add(pc);
+        Comment comment = new Comment(pc.getID(), "Hello", true, buyer);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
+        pc.getComments().add(comment);
 
 
         DropShadow dropShadow = new DropShadow();
@@ -139,11 +151,11 @@ public class Stg_HomePage {
 
         Scene scene = new Scene(root, 1000, 600);
 
-        Stage homePage = new Stage();
-        homePage.setMinWidth(700);
-        homePage.setMinHeight(600);
-        homePage.setScene(scene);
-        homePage.show();
+
+        stage.setMinWidth(700);
+        stage.setMinHeight(600);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void showStuffs(TilePane tilePane) {
@@ -185,6 +197,12 @@ public class Stg_HomePage {
             lbl_Price.setTextFill(Color.web("#C88EA7"));
             lbl_Price.setEffect(shadow);
 
+            lbl_Name.setText("Name: " + s.getName());
+            lbl_Category.setText("Category: " + s.getCategory().toString().toLowerCase());
+            lbl_Count.setText("Count: " + s.getCount());
+            lbl_AverageRate.setText("Rate: " + s.getAverageRate());
+            lbl_Price.setText("Price: " + s.getPrice());
+
             VBox vBox_Stuff = new VBox();
             vBox_Stuff.setBackground(new Background(new BackgroundFill(Color.web("#27374D"), new CornerRadii(10), new Insets(0))));
             vBox_Stuff.setCursor(Cursor.HAND);
@@ -217,12 +235,12 @@ public class Stg_HomePage {
                 scaleTransition.play();
                 vBox_Stuff.setEffect(shadow);
             });
+            vBox_Stuff.setOnMouseClicked(event -> {
+                Stg_StuffPage stuffPage = new Stg_StuffPage();
+                stuffPage.ownerStage = stage;
+                stuffPage.Show(s);
+            });
 
-            lbl_Name.setText("Name: " + s.getName());
-            lbl_Category.setText("Category: " + s.getCategory().toString().toLowerCase());
-            lbl_Count.setText("Count: " + s.getCount());
-            lbl_AverageRate.setText("Rate: " + s.getAverageRate());
-            lbl_Price.setText("Price: " + s.getPrice());
 
             vBox_Stuff.getChildren().addAll(lbl_Name, lbl_Category, lbl_Count, lbl_AverageRate, lbl_Price);
             vBox_Stuff.setPrefWidth(170);

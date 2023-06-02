@@ -19,7 +19,7 @@ public class Automobile extends Vehicle {
         this.motorCapacity = motorCapacity;
     }
 
-    public boolean isAutomate() {
+    public boolean getIsAutomate() {
         return isAutomate;
     }
 

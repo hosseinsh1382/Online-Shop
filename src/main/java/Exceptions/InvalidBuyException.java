@@ -2,11 +2,8 @@ package Exceptions;
 
 public class InvalidBuyException extends Exception {
     public InvalidBuyException(String message) {
-        super(message);
+        super("Buy failed - "+ message);
     }
 
-    @Override
-    public String toString() {
-        return "Buy failed - " + super.toString();
-    }
+
 }

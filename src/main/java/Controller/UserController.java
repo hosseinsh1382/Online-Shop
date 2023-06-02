@@ -1,5 +1,6 @@
 package Controller;
 
+import Exceptions.InvalidEmailException;
 import Model.User.User;
 
 import java.util.ArrayList;
@@ -49,10 +50,11 @@ public class UserController {
         return false;
     }
 
-    public static boolean checkEmailValidation(String email){
+    public static void checkEmailValidation(String email)throws InvalidEmailException{
         Pattern pattern = Pattern.compile("^\\w+\\@\\w+\\.\\w+");
         Matcher matcher = pattern.matcher(email);
-        return matcher.find();
+        if(!matcher.find())
+            throw new InvalidEmailException();
     }
     public static boolean checkPhoneValidation(String email){
         Pattern pattern = Pattern.compile("^09\\d{11}");
