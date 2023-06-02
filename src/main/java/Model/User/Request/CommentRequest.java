@@ -8,8 +8,8 @@ public class CommentRequest extends Request {
     private final Comment newComment;
     private final Stuff stuff;
 
-    public CommentRequest(Buyer requester, Comment newComment, Stuff stuff) {
-        super(requester);
+    public CommentRequest(Comment newComment, Stuff stuff) {
+        super();
         this.newComment = newComment;
         this.stuff = stuff;
     }

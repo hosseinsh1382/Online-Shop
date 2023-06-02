@@ -1,13 +1,15 @@
 package Model.User.Request;
 
 
+import Controller.BuyerController;
+import Controller.UserController;
 import Model.User.Buyer;
 
 public abstract class Request {
     private Buyer requester;
 
-    public Request(Buyer requester) {
-        this.requester = requester;
+    public Request() {
+        this.requester = (Buyer) UserController.getLoggedInUser();
     }
 
     public Buyer getRequester() {

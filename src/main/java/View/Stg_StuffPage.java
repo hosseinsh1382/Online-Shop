@@ -1,6 +1,8 @@
 package View;
 
 import Controller.BuyerController;
+import Controller.CommentController;
+import Controller.UserController;
 import Exceptions.OutOfStockCountException;
 import Model.Comment;
 import Model.Stuffs.DigitalStuffs.DataStoring.SSD;
@@ -16,6 +18,7 @@ import Model.Stuffs.Stuff;
 import Model.Stuffs.Vehicle.Automobile;
 import Model.Stuffs.Vehicle.Bicycle;
 import Model.Stuffs.Vehicle.Vehicle;
+import Model.User.Request.CommentRequest;
 import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
@@ -46,10 +49,10 @@ public class Stg_StuffPage {
         tilePane_Information.setVgap(5);
         tilePane_Information.setHgap(5);
         tilePane_Information.setPrefWidth(300);
-        tilePane_Information.setPrefHeight(250);
+        tilePane_Information.setPrefHeight(270);
         tilePane_Information.setAlignment(Pos.BASELINE_CENTER);
         tilePane_Information.setPadding(new Insets(20, 0, 0, 10));
-        tilePane_Information.setBackground(new Background(new BackgroundFill(Color.web("#27374D"),new CornerRadii(0),new Insets(0))));
+        tilePane_Information.setBackground(new Background(new BackgroundFill(Color.web("#27374D"), new CornerRadii(0), new Insets(0))));
 
         ScrollPane scrpane_Information = new ScrollPane();
         scrpane_Information.setContent(tilePane_Information);
@@ -91,6 +94,7 @@ public class Stg_StuffPage {
 
         tilePane_Information.getChildren().addAll(lbl_Name, lbl_Price, new Separator(Orientation.HORIZONTAL), new Separator(Orientation.HORIZONTAL), lbl_Category, lbl_Count, lbl_AverageRate);
 
+
         if (stuff instanceof PC)
             pcShow((PC) stuff, tilePane_Information);
         if (stuff instanceof SSD)
@@ -115,14 +119,17 @@ public class Stg_StuffPage {
         // Comment Column{
         VBox vbox_Comments = new VBox();
         vbox_Comments.setPrefWidth(300);
-        vbox_Comments.setBackground(new Background(new BackgroundFill(Color.web("#DDE6ED"),new CornerRadii(0),new Insets(0))));
+        vbox_Comments.setPrefHeight(270);
+        vbox_Comments.setBackground(new Background(new BackgroundFill(Color.web("#DDE6ED"), new CornerRadii(0), new Insets(0))));
+        vbox_Comments.setPadding(new Insets(20, 20, 10, 10));
+
 
         ScrollPane scrpane_Comment = new ScrollPane();
         scrpane_Comment.setContent(vbox_Comments);
         scrpane_Comment.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrpane_Comment.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrpane_Comment.setBackground(new Background(new BackgroundFill(Color.web("#DDE6ED"), new CornerRadii(0), new Insets(0))));
-        scrpane_Comment.setPadding(new Insets(20, 0, 0, 0));
+
 
         if (stuff.getComments().size() == 0) {
             Label lbl_NoComment = new Label();
@@ -136,15 +143,13 @@ public class Stg_StuffPage {
 
         for (Comment c : stuff.getComments()) {
             HBox hBox_commentItem = new HBox();
-            hBox_commentItem.setPadding(new Insets(0, 0, 5, 5));
-            hBox_commentItem.setSpacing(10);
-
+            hBox_commentItem.setPadding(new Insets(0, 0, 5, 0));
             Label lbl_CommentText = new Label();
             lbl_CommentText.setText(c.getBuyer().getUsername() + ": " + c.getCommentText());
             lbl_CommentText.setFont(Font.font(14));
             lbl_CommentText.setTextFill(Color.web("#000000"));
             lbl_CommentText.setPrefHeight(17);
-            lbl_CommentText.setPrefWidth(160);
+            lbl_CommentText.setPrefWidth(180);
 
             Label lbl_IsBought = new Label();
             if (c.getIsBought())
@@ -158,7 +163,9 @@ public class Stg_StuffPage {
             Separator separator1 = new Separator(Orientation.HORIZONTAL);
             vbox_Comments.getChildren().addAll(hBox_commentItem, separator1);
         }
+
         //}
+
 
         //Buttons {
         DropShadow dropShadow = new DropShadow();
@@ -201,17 +208,17 @@ public class Stg_StuffPage {
         btn_AddRate.setEffect(dropShadow);
 
 
-        Label lbl_count = new Label();
-        lbl_count.setText("Count:");
-        lbl_count.setPrefWidth(50);
-        lbl_count.setPrefHeight(20);
+        Label lbl_BuyCount = new Label();
+        lbl_BuyCount.setText("Count:");
+        lbl_BuyCount.setPrefWidth(50);
+        lbl_BuyCount.setPrefHeight(20);
 
         TextField txt_Count = new TextField();
         txt_Count.setPrefWidth(50);
         txt_Count.setPrefHeight(20);
 
         HBox hBox_Count = new HBox();
-        hBox_Count.getChildren().addAll(lbl_count, txt_Count);
+        hBox_Count.getChildren().addAll(lbl_BuyCount, txt_Count);
         hBox_Count.setPadding(new Insets(60, 0, 0, 0));
         hBox_Count.setVisible(false);
 
@@ -241,7 +248,6 @@ public class Stg_StuffPage {
         vBox_Buttons.setSpacing(10);
 
 
-
         //Events{
         btn_AddToCart.setOnMouseEntered(event -> {
             btn_AddToCart.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
@@ -254,6 +260,7 @@ public class Stg_StuffPage {
                 try {
                     BuyerController.buy(stuff, Integer.parseInt(txt_Count.getText()));
                     hBox_Count.setVisible(false);
+                    lbl_Count.setText("Count: " + stuff.getCount());
                 } catch (NumberFormatException e) {
                     Stg_Error errorPage = new Stg_Error();
                     errorPage.ownerStage = stage;
@@ -269,12 +276,14 @@ public class Stg_StuffPage {
                 hBox_Count.setVisible(true);
             }
         });
+
         btn_AddRate.setOnMouseEntered(event -> {
             btn_AddRate.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
         });
         btn_AddRate.setOnMouseExited(event -> {
             btn_AddRate.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         });
+
         btn_AddComment.setOnMouseEntered(event -> {
 
             btn_AddComment.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
@@ -282,11 +291,23 @@ public class Stg_StuffPage {
         btn_AddComment.setOnMouseExited(event -> {
             btn_AddComment.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         });
+        btn_AddComment.setOnMouseClicked(event -> {
+            if (UserController.getLoggedInUser() != null) {
+                TextField textField_NewComment = new TextField();
+                vbox_Comments.getChildren().add(textField_NewComment);
+                CommentController.addComment(stuff, textField_NewComment.getText());
+            }
+            else {
+                Stg_Error errorPage = new Stg_Error();
+                errorPage.ownerStage=stage;
+                errorPage.show("Please Sign in First!");
+            }
+        });
         //}
 
-        root.getChildren().addAll(tilePane_Information, separator, scrpane_Comment, vBox_Buttons);
+        root.getChildren().addAll(scrpane_Information, scrpane_Comment, vBox_Buttons);
 
-        Scene scene = new Scene(root, 750, 250);
+        Scene scene = new Scene(root, 780, 250);
 
         stage.setMaxWidth(800);
         stage.setMaxHeight(300);

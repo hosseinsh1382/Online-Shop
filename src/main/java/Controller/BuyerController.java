@@ -57,7 +57,7 @@ public class BuyerController {
         return filteredStuffs;
     }
 
-    public static String buy(Stuff boughtStuff, int count) throws OutOfStockCountException {
+    public static void buy(Stuff boughtStuff, int count) throws OutOfStockCountException {
         if (boughtStuff.getCount() < count)
             throw new OutOfStockCountException();
 
@@ -66,7 +66,7 @@ public class BuyerController {
         boughtStuff.setCount(boughtStuff.getCount() - count);
 
         ((Buyer) UserController.getLoggedInUser()).getCart().add(newStuff);
-        return "Added to cart";
+
     }
 
     public static String finalizeBuy() {

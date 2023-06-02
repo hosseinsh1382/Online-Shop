@@ -10,7 +10,7 @@ import Model.User.Request.CommentRequest;
 public class CommentController {
     public static String addComment(Stuff stuff, String commentText) {
         Comment newComment = new Comment(stuff.getID(), commentText, isBought(stuff), (Buyer) UserController.getLoggedInUser());
-        CommentRequest newCommentRequest = new CommentRequest((Buyer) UserController.getLoggedInUser(),newComment,stuff);
+        CommentRequest newCommentRequest = new CommentRequest(newComment,stuff);
         return "request sent";
     }
 
