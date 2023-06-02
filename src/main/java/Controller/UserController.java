@@ -1,6 +1,7 @@
 package Controller;
 
 import Exceptions.InvalidEmailException;
+import Model.User.Buyer;
 import Model.User.User;
 
 import java.util.ArrayList;

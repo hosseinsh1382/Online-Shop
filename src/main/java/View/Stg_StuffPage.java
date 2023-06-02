@@ -163,6 +163,10 @@ public class Stg_StuffPage {
             Separator separator1 = new Separator(Orientation.HORIZONTAL);
             vbox_Comments.getChildren().addAll(hBox_commentItem, separator1);
         }
+        TextField textField_NewComment = new TextField();
+        textField_NewComment.setVisible(false);
+        vbox_Comments.getChildren().add(textField_NewComment);
+
 
         //}
 
@@ -293,13 +297,17 @@ public class Stg_StuffPage {
         });
         btn_AddComment.setOnMouseClicked(event -> {
             if (UserController.getLoggedInUser() != null) {
-                TextField textField_NewComment = new TextField();
-                vbox_Comments.getChildren().add(textField_NewComment);
-                CommentController.addComment(stuff, textField_NewComment.getText());
-            }
-            else {
+
+                if (textField_NewComment.isVisible()) {
+                    CommentController.addComment(stuff, textField_NewComment.getText());
+                    vbox_Comments.getChildren().remove(textField_NewComment);
+                    textField_NewComment.setVisible(false);
+                } else {
+                    textField_NewComment.setVisible(true);
+                }
+            } else {
                 Stg_Error errorPage = new Stg_Error();
-                errorPage.ownerStage=stage;
+                errorPage.ownerStage = stage;
                 errorPage.show("Please Sign in First!");
             }
         });
@@ -307,7 +315,7 @@ public class Stg_StuffPage {
 
         root.getChildren().addAll(scrpane_Information, scrpane_Comment, vBox_Buttons);
 
-        Scene scene = new Scene(root, 780, 250);
+        Scene scene = new Scene(root, 750, 250);
 
         stage.setMaxWidth(800);
         stage.setMaxHeight(300);

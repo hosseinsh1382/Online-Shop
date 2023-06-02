@@ -6,7 +6,7 @@ public class IncreaseCreditRequest extends Request {
     double extraCredit;
 
     public IncreaseCreditRequest(Buyer requester, double extraCredit) {
-        super(requester);
+        super();
         this.extraCredit = extraCredit;
     }
 
