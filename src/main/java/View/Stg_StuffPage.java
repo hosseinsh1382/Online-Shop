@@ -2,6 +2,7 @@ package View;
 
 import Controller.BuyerController;
 import Controller.CommentController;
+import Controller.StuffController;
 import Controller.UserController;
 import Exceptions.OutOfStockCountException;
 import Model.Comment;
@@ -217,12 +218,12 @@ public class Stg_StuffPage {
         lbl_BuyCount.setPrefWidth(50);
         lbl_BuyCount.setPrefHeight(20);
 
-        TextField txt_Count = new TextField();
-        txt_Count.setPrefWidth(50);
-        txt_Count.setPrefHeight(20);
+        TextField txt_BuyCount = new TextField();
+        txt_BuyCount.setPrefWidth(50);
+        txt_BuyCount.setPrefHeight(20);
 
         HBox hBox_Count = new HBox();
-        hBox_Count.getChildren().addAll(lbl_BuyCount, txt_Count);
+        hBox_Count.getChildren().addAll(lbl_BuyCount, txt_BuyCount);
         hBox_Count.setPadding(new Insets(60, 0, 0, 0));
         hBox_Count.setVisible(false);
 
@@ -262,7 +263,7 @@ public class Stg_StuffPage {
         btn_AddToCart.setOnMouseClicked(event -> {
             if (hBox_Count.isVisible()) {
                 try {
-                    BuyerController.buy(stuff, Integer.parseInt(txt_Count.getText()));
+                    BuyerController.buy(stuff, Integer.parseInt(txt_BuyCount.getText()));
                     hBox_Count.setVisible(false);
                     lbl_Count.setText("Count: " + stuff.getCount());
                 } catch (NumberFormatException e) {
@@ -286,6 +287,14 @@ public class Stg_StuffPage {
         });
         btn_AddRate.setOnMouseExited(event -> {
             btn_AddRate.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        });
+        btn_AddRate.setOnMouseClicked(event -> {
+            if (hBox_Count.isVisible()) {
+                StuffController.setRate(stuff, Double.parseDouble(txt_BuyCount.getText()));
+                hBox_Count.setVisible(false);
+                txt_BuyCount.setText("");
+                lbl_AverageRate.setText("Rate: " + stuff.getAverageRate());
+            } else hBox_Count.setVisible(true);
         });
 
         btn_AddComment.setOnMouseEntered(event -> {

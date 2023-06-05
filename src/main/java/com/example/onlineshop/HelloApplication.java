@@ -1,6 +1,5 @@
 package com.example.onlineshop;
 
-import View.Stg_Error;
 import View.Stg_HomePage;
 import javafx.application.Application;
 import javafx.stage.Stage;
