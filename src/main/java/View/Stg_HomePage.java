@@ -36,7 +36,7 @@ public class Stg_HomePage {
 
         PC pc = new PC("a", 222, 2, 4, 4, 4, 2, "d", "2");
         PC pc2 = new PC("b", 222, 2, 4, 4, 4, 2, "d", "2");
-        SSD ssd = new SSD("jjh",123,3,32,23,23,23,2,32,43);
+        SSD ssd = new SSD("jjh", 123, 3, 32, 23, 23, 23, 2, 32, 43);
         Buyer buyer = new Buyer("a", "s", "a", "923");
 
         StuffController.getStuffs().add(ssd);
@@ -82,10 +82,12 @@ public class Stg_HomePage {
         btn_SignUp.setPrefHeight(30);
         btn_SignUp.setMinWidth(60);
         btn_SignUp.setMinHeight(30);
-        btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(5), new Insets(0))));
+        btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         btn_SignUp.setFont(Font.font(btn_SignUp.getFont().getFamily(), FontWeight.BOLD, 13));
         btn_SignUp.setTextFill(Color.web("#27374D"));
         btn_SignUp.setEffect(dropShadow);
+        btn_SignUp.setCursor(Cursor.HAND);
+
 
         Button btn_Login = new Button();
         btn_Login.setText("Login");
@@ -95,8 +97,9 @@ public class Stg_HomePage {
         btn_Login.setMinHeight(30);
         btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.BOLD, 13));
         btn_Login.setTextFill(Color.web("#27374D"));
-        btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(5), new Insets(0))));
+        btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         btn_Login.setEffect(dropShadow);
+        btn_Login.setCursor(Cursor.HAND);
 
 
         Button btn_Cart = new Button();
@@ -107,8 +110,33 @@ public class Stg_HomePage {
         btn_Cart.setMinHeight(30);
         btn_Cart.setFont(Font.font(btn_Cart.getFont().getFamily(), FontWeight.BOLD, 13));
         btn_Cart.setTextFill(Color.web("#27374D"));
-        btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(5), new Insets(0))));
+        btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         btn_Cart.setEffect(dropShadow);
+        btn_Cart.setCursor(Cursor.HAND);
+
+
+        // Events{
+        btn_Login.setOnMouseEntered(event -> {
+            btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
+        });
+        btn_Login.setOnMouseExited(event -> {
+            btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        });
+        
+        btn_SignUp.setOnMouseEntered(event ->{
+            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
+        });
+        btn_SignUp.setOnMouseExited(event ->{
+            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        });
+
+        btn_Cart.setOnMouseEntered(event ->{
+            btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
+        });
+        btn_Cart.setOnMouseExited(event ->{
+            btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        });
+    //}
 
 
         AnchorPane header = new AnchorPane();
@@ -118,7 +146,7 @@ public class Stg_HomePage {
         AnchorPane.setLeftAnchor(btn_SignUp, 20.0);
         AnchorPane.setBottomAnchor(btn_SignUp, 20.0);
 
-        AnchorPane.setLeftAnchor(btn_Login, 120.0);
+        AnchorPane.setLeftAnchor(btn_Login, 115.0);
         AnchorPane.setTopAnchor(btn_Login, 20.0);
         AnchorPane.setBottomAnchor(btn_Login, 20.0);
 
