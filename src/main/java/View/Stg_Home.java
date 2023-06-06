@@ -33,11 +33,6 @@ public class Stg_Home {
     Stage stage = new Stage();
 
     public void show() {
-
-
-
-
-
         DropShadow dropShadow = new DropShadow();
         dropShadow.setBlurType(BlurType.GAUSSIAN);
         dropShadow.setColor(Color.web("#585858"));
@@ -104,6 +99,10 @@ public class Stg_Home {
         });
         btn_SignUp.setOnMouseExited(event -> {
             btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        });
+        btn_SignUp.setOnMouseClicked(event ->{
+            stage.close();
+            new Stg_SignUp().show();
         });
 
         btn_Cart.setOnMouseEntered(event -> {
