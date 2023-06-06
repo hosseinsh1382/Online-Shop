@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 public class StuffController {
 
+
     private static ArrayList<Stuff> stuffs = new ArrayList<>();
 
     public static ArrayList<Stuff> getStuffs() {

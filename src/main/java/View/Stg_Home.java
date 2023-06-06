@@ -34,33 +34,8 @@ public class Stg_Home {
 
     public void show() {
 
-        PC pc = new PC("Asus", 25000, 5, 1.4, 30, 5, 20, "i7-11700", "20");
-        PC pc2 = new PC("Lenovo", 27000, 8, 1.6, 25, 4, 18, "i5-1065", "2");
-        SSD ssd = new SSD("Western Digital", 2400, 10, 0.2, 12, 3, 15, 256, 32, 43);
 
-        Buyer buyer = new Buyer("a", "s", "a", "923");
 
-        StuffController.getStuffs().add(ssd);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(ssd);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(ssd);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc2);
-
-        Comment comment = new Comment(pc.getID(), "good quality", true, buyer);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
 
 
         DropShadow dropShadow = new DropShadow();
@@ -117,6 +92,11 @@ public class Stg_Home {
         });
         btn_Login.setOnMouseExited(event -> {
             btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        });
+        btn_Login.setOnMouseClicked(event ->{
+            Stg_Login loginPage = new Stg_Login();
+            stage.close();
+            loginPage.show();
         });
 
         btn_SignUp.setOnMouseEntered(event -> {
@@ -179,10 +159,12 @@ public class Stg_Home {
         stage.setMinWidth(700);
         stage.setMinHeight(600);
         stage.setScene(scene);
+        stage.setTitle("Home");
         stage.show();
     }
 
     public void showStuffs(TilePane tilePane) {
+
         ArrayList<Stuff> stuffs = StuffController.getStuffs();
 
         DropShadow shadow = new DropShadow();

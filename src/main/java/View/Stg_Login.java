@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 
 public class Stg_Login {
     public void show() {
-        Buyer buyer = new Buyer("a", "s", "a", "923");
+        Buyer buyer = new Buyer("hossein", "1234", "hosseinshirkavand82@gmail.com", "09370248298");
         UserController.getUsers().add(buyer);
 
         Stage stage = new Stage();
@@ -170,6 +170,7 @@ public class Stg_Login {
         scene.setFill(linearGradient);
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.setTitle("Login");
         stage.show();
     }
 
