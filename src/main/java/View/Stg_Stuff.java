@@ -19,9 +19,6 @@ import Model.Stuffs.Stuff;
 import Model.Stuffs.Vehicle.Automobile;
 import Model.Stuffs.Vehicle.Bicycle;
 import Model.Stuffs.Vehicle.Vehicle;
-import Model.User.Request.CommentRequest;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -35,10 +32,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 
-public class Stg_StuffPage {
+public class Stg_Stuff {
     Stage ownerStage;
 
 

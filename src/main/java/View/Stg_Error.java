@@ -6,21 +6,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class Stg_Error {
     public Stage ownerStage;
 
     public void show(String errorMessage) {
-        Image image = new Image("https://static-00.iconduck.com/assets.00/dialog-error-icon-2048x2048-xktj28v4.png");
+        Image image = new Image("https://static-00.iconduck.com/assets.00/dialog-error-icon-2048x2048-xktj28v4.png",true);
         ImageView imgView_Error = new ImageView(image);
         imgView_Error.setFitHeight(40);
         imgView_Error.setFitWidth(40);

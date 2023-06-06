@@ -7,7 +7,6 @@ import Model.Stuffs.DigitalStuffs.PC;
 import Model.Stuffs.Stuff;
 import Model.User.Buyer;
 import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -28,7 +27,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-public class Stg_HomePage {
+public class Stg_Home {
 
     Stage stage = new Stage();
 
@@ -262,7 +261,7 @@ public class Stg_HomePage {
                 vBox_Stuff.setEffect(shadow);
             });
             vBox_Stuff.setOnMouseClicked(event -> {
-                Stg_StuffPage stuffPage = new Stg_StuffPage();
+                Stg_Stuff stuffPage = new Stg_Stuff();
                 stuffPage.ownerStage = stage;
                 stuffPage.Show(s);
             });
