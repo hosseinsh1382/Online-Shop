@@ -1,6 +1,7 @@
 package Controller;
 
 import Exceptions.InvalidEmailException;
+import Exceptions.InvalidPhoneException;
 import Model.User.Buyer;
 import Model.User.User;
 
@@ -51,17 +52,20 @@ public class UserController {
         return false;
     }
 
-    public static void checkEmailValidation(String email) throws InvalidEmailException {
-        Pattern pattern = Pattern.compile("^\\w+\\@\\w+\\.\\w+");
+    public static boolean checkEmailValidation(String email) throws InvalidEmailException {
+        Pattern pattern = Pattern.compile("^\\w+@\\w+\\.\\w+");
         Matcher matcher = pattern.matcher(email);
         if (!matcher.find())
             throw new InvalidEmailException();
+        return true;
     }
 
-    public static boolean checkPhoneValidation(String email) {
+    public static boolean checkPhoneValidation(String email) throws InvalidPhoneException {
         Pattern pattern = Pattern.compile("^09\\d{11}");
         Matcher matcher = pattern.matcher(email);
-        return matcher.find();
+        if (!matcher.find())
+            throw new InvalidPhoneException();
+        return true;
     }
 
     public static boolean checkPasswordValidation(String email) {
@@ -78,5 +82,13 @@ public class UserController {
             }
         }
         return false;
+    }
+
+    public static void signUp(String username, String password, String email, String phoneNo) throws InvalidPhoneException, InvalidEmailException {
+        checkEmailValidation(email);
+        checkPasswordValidation(password);
+        checkPhoneValidation(phoneNo);
+
+        users.add(new Buyer(username,password,email,phoneNo));
     }
 }
