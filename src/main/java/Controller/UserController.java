@@ -51,20 +51,32 @@ public class UserController {
         return false;
     }
 
-    public static void checkEmailValidation(String email)throws InvalidEmailException{
+    public static void checkEmailValidation(String email) throws InvalidEmailException {
         Pattern pattern = Pattern.compile("^\\w+\\@\\w+\\.\\w+");
         Matcher matcher = pattern.matcher(email);
-        if(!matcher.find())
+        if (!matcher.find())
             throw new InvalidEmailException();
     }
-    public static boolean checkPhoneValidation(String email){
+
+    public static boolean checkPhoneValidation(String email) {
         Pattern pattern = Pattern.compile("^09\\d{11}");
         Matcher matcher = pattern.matcher(email);
         return matcher.find();
     }
-    public static boolean checkPasswordValidation(String email){
+
+    public static boolean checkPasswordValidation(String email) {
         Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\\\S+$).{8,20}$");
         Matcher matcher = pattern.matcher(email);
         return matcher.find();
+    }
+
+    public static boolean login(String username, String password) {
+        for (User u : users) {
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                loggedInUser = u;
+                return true;
+            }
+        }
+        return false;
     }
 }

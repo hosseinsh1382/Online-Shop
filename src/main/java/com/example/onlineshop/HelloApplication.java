@@ -3,7 +3,6 @@ package com.example.onlineshop;
 import View.Stg_Home;
 import View.Stg_Login;
 import javafx.application.Application;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 

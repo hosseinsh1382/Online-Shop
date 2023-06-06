@@ -1,6 +1,7 @@
 package View;
 
 import Controller.StuffController;
+import Controller.UserController;
 import Model.Comment;
 import Model.Stuffs.DigitalStuffs.DataStoring.SSD;
 import Model.Stuffs.DigitalStuffs.PC;
@@ -33,27 +34,23 @@ public class Stg_Home {
 
     public void show() {
 
-        PC pc = new PC("a", 222, 2, 4, 4, 4, 2, "d", "2");
-        PC pc2 = new PC("b", 222, 2, 4, 4, 4, 2, "d", "2");
-        SSD ssd = new SSD("jjh", 123, 3, 32, 23, 23, 23, 2, 32, 43);
+        PC pc = new PC("Asus", 25000, 5, 1.4, 30, 5, 20, "i7-11700", "20");
+        PC pc2 = new PC("Lenovo", 27000, 8, 1.6, 25, 4, 18, "i5-1065", "2");
+        SSD ssd = new SSD("Western Digital", 2400, 10, 0.2, 12, 3, 15, 256, 32, 43);
+
         Buyer buyer = new Buyer("a", "s", "a", "923");
 
         StuffController.getStuffs().add(ssd);
         StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc);
+        StuffController.getStuffs().add(pc2);
+        StuffController.getStuffs().add(ssd);
         StuffController.getStuffs().add(pc);
         StuffController.getStuffs().add(pc2);
+        StuffController.getStuffs().add(ssd);
+        StuffController.getStuffs().add(pc);
         StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc2);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc);
-        StuffController.getStuffs().add(pc);
-        Comment comment = new Comment(pc.getID(), "Hello", true, buyer);
+
+        Comment comment = new Comment(pc.getID(), "good quality", true, buyer);
         pc.getComments().add(comment);
         pc.getComments().add(comment);
         pc.getComments().add(comment);
@@ -121,21 +118,21 @@ public class Stg_Home {
         btn_Login.setOnMouseExited(event -> {
             btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         });
-        
-        btn_SignUp.setOnMouseEntered(event ->{
+
+        btn_SignUp.setOnMouseEntered(event -> {
             btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
         });
-        btn_SignUp.setOnMouseExited(event ->{
+        btn_SignUp.setOnMouseExited(event -> {
             btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         });
 
-        btn_Cart.setOnMouseEntered(event ->{
+        btn_Cart.setOnMouseEntered(event -> {
             btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
         });
-        btn_Cart.setOnMouseExited(event ->{
+        btn_Cart.setOnMouseExited(event -> {
             btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         });
-    //}
+        //}
 
 
         AnchorPane header = new AnchorPane();
@@ -199,7 +196,7 @@ public class Stg_Home {
         for (Stuff s : stuffs) {
             Label lbl_Name = new Label();
             lbl_Name.setFont(Font.font(lbl_Name.getFont().getFamily(), FontWeight.BOLD, 15));
-            lbl_Name.setPadding(new Insets(0, 0, 30, 45));
+            lbl_Name.setPadding(new Insets(0, 0, 30, 0));
             lbl_Name.setTextFill(Color.web("#9DB2BF"));
             lbl_Name.setEffect(shadow);
 
@@ -217,10 +214,13 @@ public class Stg_Home {
             lbl_AverageRate.setFont(Font.font(13));
             lbl_AverageRate.setTextFill(Color.web("#9DB2BF"));
 
+            VBox vBox = new VBox(lbl_Category, lbl_Count, lbl_AverageRate);
+            vBox.setAlignment(Pos.CENTER_LEFT);
+
             Label lbl_Price = new Label();
             lbl_Price.setFont(Font.font(15));
             lbl_Price.setFont(Font.font(lbl_Price.getFont().getFamily(), FontWeight.BOLD, 15));
-            lbl_Price.setPadding(new Insets(30, 0, 0, 35));
+            lbl_Price.setPadding(new Insets(30, 0, 0, 0));
             lbl_Price.setTextFill(Color.web("#C88EA7"));
             lbl_Price.setEffect(shadow);
 
@@ -267,10 +267,11 @@ public class Stg_Home {
             });
 
 
-            vBox_Stuff.getChildren().addAll(lbl_Name, lbl_Category, lbl_Count, lbl_AverageRate, lbl_Price);
+            vBox_Stuff.getChildren().addAll(lbl_Name, vBox, lbl_Price);
             vBox_Stuff.setPrefWidth(170);
             vBox_Stuff.setPrefHeight(200);
             vBox_Stuff.setPadding(new Insets(10));
+            vBox_Stuff.setAlignment(Pos.CENTER);
             vBox_Stuff.setEffect(shadow);
 
 

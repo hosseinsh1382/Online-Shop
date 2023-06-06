@@ -1,7 +1,10 @@
 package View;
 
+import Controller.UserController;
+import Model.User.Buyer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,11 +24,14 @@ import javafx.stage.Stage;
 
 public class Stg_Login {
     public void show() {
+        Buyer buyer = new Buyer("a", "s", "a", "923");
+        UserController.getUsers().add(buyer);
+
         Stage stage = new Stage();
         VBox root = new VBox();
 
         AnchorPane pane_Image = new AnchorPane();
-        ImageView img_Login = new ImageView(new Image("https://cdn-icons-png.flaticon.com/512/6681/6681204.png"));
+        ImageView img_Login = new ImageView(new Image("https://cdn-icons-png.flaticon.com/512/6681/6681204.png",true));
         img_Login.setFitHeight(70);
         img_Login.setPreserveRatio(true);
         AnchorPane.setLeftAnchor(img_Login, 120.0);
@@ -98,6 +104,7 @@ public class Stg_Login {
         btn_Login.setEffect(dropShadow);
         btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.NORMAL, 13));
         btn_Login.setTextFill(Color.web("#000000"));
+        btn_Login.setCursor(Cursor.HAND);
 
         //Events{
         btn_Login.setOnMouseEntered(events -> {
@@ -110,6 +117,20 @@ public class Stg_Login {
             btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9BABB8"), new CornerRadii(10), new Insets(0))));
             btn_Login.setTextFill(Color.web("#000000"));
             btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.NORMAL, 13));
+        });
+        btn_Login.setOnMouseClicked(event ->{
+           if(UserController.login(txt_Username.getText(),txt_Password.getText())){
+               if(UserController.getLoggedInUser() instanceof Buyer){
+                   Stg_Home homePage = new Stg_Home();
+                   homePage.show();
+                   stage.close();
+               }
+           }
+           else {
+               Stg_Error errorPage = new Stg_Error();
+               errorPage.ownerStage=stage;
+               errorPage.show("Invalid username or password");
+           }
         });
         //}
 
@@ -127,6 +148,7 @@ public class Stg_Login {
 
         Scene scene = new Scene(root, 400, 450);
         scene.setFill(linearGradient);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
