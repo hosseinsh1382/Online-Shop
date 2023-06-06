@@ -30,8 +30,21 @@ public class Stg_Login {
         Stage stage = new Stage();
         VBox root = new VBox();
 
+        Button btn_Back = new Button();
+        btn_Back.setText("back");
+        btn_Back.setFont(Font.font(12));
+        //btn_Back.setPadding(new Insets(7));
+        btn_Back.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(10), new Insets(0))));
+        btn_Back.setPrefSize(50, 30);
+        btn_Back.setAlignment(Pos.CENTER);
+        btn_Back.setCursor(Cursor.HAND);
+
+        VBox pane = new VBox(btn_Back);
+        pane.setPadding(new Insets(0, 0, 0, 10));
+        //pane.setBackground(new Background(new BackgroundFill(Color.BLACK,new CornerRadii(0),new Insets(0))));
+
         AnchorPane pane_Image = new AnchorPane();
-        ImageView img_Login = new ImageView(new Image("https://cdn-icons-png.flaticon.com/512/6681/6681204.png",true));
+        ImageView img_Login = new ImageView(new Image("https://cdn-icons-png.flaticon.com/512/6681/6681204.png", true));
         img_Login.setFitHeight(70);
         img_Login.setPreserveRatio(true);
         AnchorPane.setLeftAnchor(img_Login, 120.0);
@@ -118,25 +131,32 @@ public class Stg_Login {
             btn_Login.setTextFill(Color.web("#000000"));
             btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.NORMAL, 13));
         });
-        btn_Login.setOnMouseClicked(event ->{
-           if(UserController.login(txt_Username.getText(),txt_Password.getText())){
-               if(UserController.getLoggedInUser() instanceof Buyer){
-                   Stg_Home homePage = new Stg_Home();
-                   homePage.show();
-                   stage.close();
-               }
-           }
-           else {
-               Stg_Error errorPage = new Stg_Error();
-               errorPage.ownerStage=stage;
-               errorPage.show("Invalid username or password");
-           }
+        btn_Login.setOnMouseClicked(event -> {
+            if (UserController.login(txt_Username.getText(), txt_Password.getText())) {
+                if (UserController.getLoggedInUser() instanceof Buyer) {
+                    Stg_Home homePage = new Stg_Home();
+                    homePage.show();
+                    stage.close();
+                }
+            } else {
+                showHomePage(stage);
+            }
+        });
+
+        btn_Back.setOnMouseEntered(event -> {
+            btn_Back.setBackground(new Background(new BackgroundFill(Color.web("#9BABB8"), new CornerRadii(5), new Insets(0))));
+        });
+        btn_Back.setOnMouseExited(event -> {
+            btn_Back.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(10), new Insets(0))));
+        });
+        btn_Back.setOnMouseClicked(event ->{
+            showHomePage(stage);
         });
         //}
 
         root.setAlignment(Pos.CENTER);
         root.setSpacing(10);
-        root.getChildren().addAll(vBox_Information, btn_Login);
+        root.getChildren().addAll(pane, vBox_Information, btn_Login);
         root.setPadding(new Insets(0, 40, 0, 40));
 
         Stop[] stops = new Stop[]{
@@ -152,4 +172,12 @@ public class Stg_Login {
         stage.setScene(scene);
         stage.show();
     }
+
+    private static void showHomePage(Stage stage) {
+        Stg_Home homePage = new Stg_Home();
+        homePage.show();
+        stage.close();
+    }
+
+
 }

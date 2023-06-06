@@ -10,9 +10,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) {
         Stg_Home homePage = new Stg_Home();
-        Stg_Login loginPage = new Stg_Login();
-        loginPage.show();
-        //homePage.show();
+        homePage.show();
 
 
     }
