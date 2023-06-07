@@ -33,7 +33,6 @@ public class Stg_Login {
         Button btn_Back = new Button();
         btn_Back.setText("back");
         btn_Back.setFont(Font.font(12));
-        //btn_Back.setPadding(new Insets(7));
         btn_Back.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(10), new Insets(0))));
         btn_Back.setPrefSize(50, 30);
         btn_Back.setAlignment(Pos.CENTER);
@@ -41,7 +40,7 @@ public class Stg_Login {
 
         VBox pane = new VBox(btn_Back);
         pane.setPadding(new Insets(0, 0, 0, 10));
-        //pane.setBackground(new Background(new BackgroundFill(Color.BLACK,new CornerRadii(0),new Insets(0))));
+
 
         AnchorPane pane_Image = new AnchorPane();
         ImageView img_Login = new ImageView(new Image("https://cdn-icons-png.flaticon.com/512/6681/6681204.png", true));
@@ -55,17 +54,18 @@ public class Stg_Login {
         Label lbl_Username = new Label();
         lbl_Username.setText("Username:");
         lbl_Username.setAlignment(Pos.BOTTOM_CENTER);
-        lbl_Username.setFont(Font.font(14));
-        lbl_Username.setBackground(new Background(new BackgroundFill(Color.web("#213555"), new CornerRadii(0), new Insets(0))));
+        lbl_Username.setFont(Font.font(lbl_Username.getFont().getFamily(),FontWeight.BOLD,13));
+        lbl_Username.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
         lbl_Username.setTextFill(Color.WHITE);
         lbl_Username.setPadding(new Insets(8));
 
 
         TextField txt_Username = new TextField();
         txt_Username.setPrefSize(200, lbl_Username.getHeight());
-        txt_Username.setBackground(new Background(new BackgroundFill(Color.web("#4F709C"), new CornerRadii(0), new Insets(0))));
+        txt_Username.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
         txt_Username.setPadding(new Insets(8));
         txt_Username.setFont(Font.font(14));
+
 
         HBox hBox_Username = new HBox();
         hBox_Username.getChildren().addAll(lbl_Username, txt_Username);
@@ -73,9 +73,9 @@ public class Stg_Login {
 
         Label lbl_Password = new Label();
         lbl_Password.setText("Password:");
-        lbl_Password.setFont(Font.font(14));
+        lbl_Password.setFont(Font.font(lbl_Password.getFont().getFamily(),FontWeight.BOLD,13));
         lbl_Password.setAlignment(Pos.BOTTOM_CENTER);
-        lbl_Password.setBackground(new Background(new BackgroundFill(Color.web("#213555"), new CornerRadii(0), new Insets(0))));
+        lbl_Password.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
         lbl_Password.setPadding(new Insets(8));
         lbl_Password.setTextFill(Color.WHITE);
         lbl_Password.setPrefWidth(lbl_Username.getPrefWidth());
@@ -84,7 +84,7 @@ public class Stg_Login {
 
         TextField txt_Password = new TextField();
         txt_Password.setPrefSize(200, lbl_Password.getHeight());
-        txt_Password.setBackground(new Background(new BackgroundFill(Color.web("#4F709C"), new CornerRadii(0), new Insets(0))));
+        txt_Password.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
         txt_Password.setPadding(new Insets(8));
         txt_Password.setFont(Font.font(14));
 
@@ -104,7 +104,7 @@ public class Stg_Login {
         VBox vBox_Information = new VBox();
         vBox_Information.getChildren().addAll(pane_Image, hBox_Username, hBox_Password);
         vBox_Information.setSpacing(10);
-        vBox_Information.setBackground(new Background(new BackgroundFill(Color.web("#9BABB8"), new CornerRadii(30), new Insets(0))));
+        vBox_Information.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(30), new Insets(0))));
         vBox_Information.setPadding(new Insets(10, 5, 80, 10));
         vBox_Information.setAlignment(Pos.CENTER);
         vBox_Information.setEffect(dropShadow);
@@ -113,23 +113,23 @@ public class Stg_Login {
         Button btn_Login = new Button();
         btn_Login.setText("Login");
         btn_Login.setPrefSize(200, 40);
-        btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9BABB8"), new CornerRadii(10), new Insets(0))));
+        btn_Login.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(10), new Insets(0))));
         btn_Login.setEffect(dropShadow);
-        btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.NORMAL, 13));
-        btn_Login.setTextFill(Color.web("#000000"));
+        btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.BOLD, 13));
+        btn_Login.setTextFill(Color.WHITE);
         btn_Login.setCursor(Cursor.HAND);
 
         //Events{
         btn_Login.setOnMouseEntered(events -> {
             btn_Login.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(0), new Insets(0))));
             btn_Login.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(1))));
-            btn_Login.setTextFill(Color.web("#FFFFFF"));
+            btn_Login.setTextFill(Color.BLACK);
             btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.BOLD, 13));
         });
         btn_Login.setOnMouseExited(event -> {
-            btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9BABB8"), new CornerRadii(10), new Insets(0))));
-            btn_Login.setTextFill(Color.web("#000000"));
-            btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.NORMAL, 13));
+            btn_Login.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(10), new Insets(0))));
+            btn_Login.setTextFill(Color.WHITE);
+            btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.BOLD, 13));
         });
         btn_Login.setOnMouseClicked(event -> {
             if (UserController.login(txt_Username.getText(), txt_Password.getText())) {
@@ -144,10 +144,12 @@ public class Stg_Login {
         });
 
         btn_Back.setOnMouseEntered(event -> {
-            btn_Back.setBackground(new Background(new BackgroundFill(Color.web("#9BABB8"), new CornerRadii(5), new Insets(0))));
+            btn_Back.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5), new Insets(0))));
+            btn_Back.setTextFill(Color.WHITE);
         });
         btn_Back.setOnMouseExited(event -> {
             btn_Back.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(10), new Insets(0))));
+            btn_Back.setTextFill(Color.BLACK);
         });
         btn_Back.setOnMouseClicked(event ->{
             showHomePage(stage);
@@ -160,8 +162,8 @@ public class Stg_Login {
         root.setPadding(new Insets(0, 40, 0, 40));
 
         Stop[] stops = new Stop[]{
-                new Stop(0, Color.web("#E893CF")),
-                new Stop(1, Color.web("#0C134F"))
+                new Stop(0, Color.DARKGRAY),
+                new Stop(1, Color.LIGHTGRAY)
         };
         LinearGradient linearGradient = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
         root.setBackground(new Background(new BackgroundFill(linearGradient, new CornerRadii(0), new Insets(0))));
