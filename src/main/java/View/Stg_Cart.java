@@ -3,12 +3,10 @@ package View;
 import Controller.*;
 import Exceptions.DiscountException;
 import Exceptions.OutOfCreditException;
-import Model.Discount;
 import Model.Stuffs.Food.Food;
 import Model.User.Buyer;
 import Model.User.CartItem;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -25,11 +23,14 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Stg_Cart {
+    VBox vBox_Cart = new VBox();
+    VBox vBox_SidePanel = new VBox();
+
     public void show() {
         CartItem cartItem = new CartItem(new Food("a", 34, 10, 1401, 1403), 2);
         ((Buyer) UserController.getLoggedInUser()).getCart().add(cartItem);
 
-        VBox vBox_Cart = new VBox();
+
         vBox_Cart.setPrefSize(580, 480);
         vBox_Cart.setAlignment(Pos.BASELINE_CENTER);
         vBox_Cart.setSpacing(5);
@@ -46,7 +47,7 @@ public class Stg_Cart {
 
 
         // Show Cart items
-        showCartItems(vBox_Cart);
+        showCartItems();
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setBlurType(BlurType.GAUSSIAN);
@@ -55,7 +56,7 @@ public class Stg_Cart {
         dropShadow.setSpread(0.05);
         dropShadow.setRadius(30);
 
-        VBox vBox_SidePanel = new VBox();
+
         vBox_SidePanel.setPrefWidth(440);
         vBox_SidePanel.setPrefHeight(100);
         vBox_SidePanel.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(5), new Insets(20))));
@@ -63,7 +64,7 @@ public class Stg_Cart {
         vBox_SidePanel.setEffect(dropShadow);
         vBox_SidePanel.setSpacing(5);
 
-        showSidePanel(vBox_SidePanel);
+        showSidePanel();
 
 
         FlowPane root = new FlowPane();
@@ -78,7 +79,7 @@ public class Stg_Cart {
         stage.show();
     }
 
-    private void showCartItems(VBox vBox_Cart) {
+    private void showCartItems() {
         Label lbl_NameHeader = new Label();
         lbl_NameHeader.setText("Name");
         lbl_NameHeader.setPrefWidth(150);
@@ -124,21 +125,21 @@ public class Stg_Cart {
             lbl_Name.setPrefWidth(150);
             lbl_Name.setAlignment(Pos.CENTER);
             lbl_Name.setFont(Font.font(14));
-            //lbl_Name.setBackground(new Background(new BackgroundFill(Color.web("#000000"),new CornerRadii(0),new Insets(0))));
+
 
             Label lbl_Count = new Label();
             lbl_Count.setText(Integer.toString(c.getCount()));
             lbl_Count.setPrefWidth(50);
             lbl_Count.setAlignment(Pos.CENTER);
             lbl_Count.setFont(Font.font(14));
-            //lbl_Count.setBackground(new Background(new BackgroundFill(Color.web("#300000"),new CornerRadii(0),new Insets(0))));
+
 
             Label lbl_Price = new Label();
             lbl_Price.setText(Double.toString(c.getTotalPrice()));
             lbl_Price.setPrefWidth(150);
             lbl_Price.setAlignment(Pos.CENTER);
             lbl_Price.setFont(Font.font(14));
-            //lbl_Price.setBackground(new Background(new BackgroundFill(Color.web("#600000"),new CornerRadii(0),new Insets(0))));
+
 
             TextField txt_Discount = new TextField();
             txt_Discount.setPrefWidth(80);
@@ -189,7 +190,9 @@ public class Stg_Cart {
             btn_Remove.setOnMouseClicked(event -> {
                 CartController.removeStuff(c);
                 vBox_Cart.getChildren().clear();
-                showCartItems(vBox_Cart);
+                vBox_SidePanel.getChildren().clear();
+                showCartItems();
+                showSidePanel();
             });
 
             HBox hBox_CartItem = new HBox();
@@ -203,7 +206,7 @@ public class Stg_Cart {
         }
     }
 
-    private void showSidePanel(VBox sidePanel) {
+    private void showSidePanel() {
         Label lbl_BuyerName = new Label();
         if (UserController.getLoggedInUser().getUsername().equals("null"))
             lbl_BuyerName.setText("Not signed in!");
@@ -285,7 +288,17 @@ public class Stg_Cart {
             btn_Buy.setTextFill(Color.WHITE);
 
         });
-
+        btn_Buy.setOnMouseClicked(event -> {
+            try {
+                BuyerController.finalizeBuy();
+                vBox_Cart.getChildren().clear();
+                vBox_SidePanel.getChildren().clear();
+                showCartItems();
+                showSidePanel();
+            } catch (OutOfCreditException e) {
+                new Stg_Error().show(e.getMessage());
+            }
+        });
         btn_Cancel.setOnMouseEntered(event -> {
             btn_Cancel.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(30), new Insets(0))));
             btn_Cancel.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(30), new BorderWidths(1))));
@@ -296,11 +309,18 @@ public class Stg_Cart {
             btn_Cancel.setBorder(Border.EMPTY);
             btn_Cancel.setTextFill(Color.WHITE);
         });
-        btn_IncreaseCredit.setOnMouseEntered(event->{
+        btn_Cancel.setOnMouseClicked(event -> {
+            BuyerController.cancelBuy();
+            vBox_Cart.getChildren().clear();
+            vBox_SidePanel.getChildren().clear();
+            showSidePanel();
+            showCartItems();
+        });
+        btn_IncreaseCredit.setOnMouseEntered(event -> {
             btn_IncreaseCredit.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(30), new Insets(0))));
             btn_IncreaseCredit.setTextFill(Color.WHITE);
         });
-        btn_IncreaseCredit.setOnMouseExited(event->{
+        btn_IncreaseCredit.setOnMouseExited(event -> {
             btn_IncreaseCredit.setTextFill(Color.BLACK);
             btn_IncreaseCredit.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(30), new BorderWidths(1))));
             btn_IncreaseCredit.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(30), new Insets(0))));
@@ -317,6 +337,6 @@ public class Stg_Cart {
 
         });
 
-        sidePanel.getChildren().addAll(lbl_BuyerName, lbl_Credit, hBox_Discount, lbl_TotalPrice, btn_Buy, btn_Cancel, btn_IncreaseCredit);
+        vBox_SidePanel.getChildren().addAll(lbl_BuyerName, lbl_Credit, hBox_Discount, lbl_TotalPrice, btn_Buy, btn_Cancel, btn_IncreaseCredit);
     }
 }

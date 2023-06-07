@@ -1,12 +1,7 @@
 package View;
 
 import Controller.StuffController;
-import Controller.UserController;
-import Model.Comment;
-import Model.Stuffs.DigitalStuffs.DataStoring.SSD;
-import Model.Stuffs.DigitalStuffs.PC;
 import Model.Stuffs.Stuff;
-import Model.User.Buyer;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -44,21 +39,21 @@ public class Stg_Home {
         //Header{
         Button btn_SignUp = new Button();
         btn_SignUp.setText("Sign Up");
-        btn_SignUp.setPrefWidth(80);
-        btn_SignUp.setPrefHeight(30);
+        btn_SignUp.setPrefWidth(100);
+        btn_SignUp.setPrefHeight(35);
         btn_SignUp.setMinWidth(60);
         btn_SignUp.setMinHeight(30);
-        btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        btn_SignUp.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
         btn_SignUp.setFont(Font.font(btn_SignUp.getFont().getFamily(), FontWeight.BOLD, 13));
-        btn_SignUp.setTextFill(Color.web("#27374D"));
+        btn_SignUp.setTextFill(Color.WHITE);
         btn_SignUp.setEffect(dropShadow);
         btn_SignUp.setCursor(Cursor.HAND);
 
 
         Button btn_Login = new Button();
         btn_Login.setText("Login");
-        btn_Login.setPrefWidth(80);
-        btn_Login.setPrefHeight(30);
+        btn_Login.setPrefWidth(100);
+        btn_Login.setPrefHeight(35);
         btn_Login.setMinWidth(60);
         btn_Login.setMinHeight(30);
         btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.BOLD, 13));
@@ -111,17 +106,21 @@ public class Stg_Home {
         btn_Cart.setOnMouseExited(event -> {
             btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
         });
+        btn_Cart.setOnMouseClicked(event ->{
+            Stg_Cart cartPage = new Stg_Cart();
+            cartPage.show();
+        });
         //}
 
 
         AnchorPane header = new AnchorPane();
-        header.setBackground(new Background(new BackgroundFill(Color.web("#526D82"), new CornerRadii(0), new Insets(0))));
+        header.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, new CornerRadii(0), new Insets(0))));
         header.getChildren().addAll(btn_Login, btn_SignUp, btn_Cart);
         AnchorPane.setTopAnchor(btn_SignUp, 20.0);
         AnchorPane.setLeftAnchor(btn_SignUp, 20.0);
         AnchorPane.setBottomAnchor(btn_SignUp, 20.0);
 
-        AnchorPane.setLeftAnchor(btn_Login, 115.0);
+        AnchorPane.setLeftAnchor(btn_Login, 135.0);
         AnchorPane.setTopAnchor(btn_Login, 20.0);
         AnchorPane.setBottomAnchor(btn_Login, 20.0);
 
