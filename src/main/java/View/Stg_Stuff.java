@@ -48,43 +48,52 @@ public class Stg_Stuff {
         tilePane_Information.setPrefWidth(300);
         tilePane_Information.setPrefHeight(270);
         tilePane_Information.setAlignment(Pos.BASELINE_CENTER);
-        tilePane_Information.setPadding(new Insets(20, 0, 0, 10));
-        tilePane_Information.setBackground(new Background(new BackgroundFill(Color.web("#27374D"), new CornerRadii(0), new Insets(0))));
+        tilePane_Information.setPadding(new Insets(10, 0, 0, 5));
+        tilePane_Information.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), new Insets(0))));
 
         ScrollPane scrpane_Information = new ScrollPane();
         scrpane_Information.setContent(tilePane_Information);
         scrpane_Information.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrpane_Information.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrpane_Information.setFitToHeight(true);
 
         Label lbl_Name = new Label();
         lbl_Name.setText("Name: " + stuff.getName());
         lbl_Name.setFont(Font.font(lbl_Name.getFont().getFamily(), FontWeight.BOLD, 15));
-        lbl_Name.setTextFill(Color.web("#FFC26F"));
+        lbl_Name.setTextFill(Color.WHITE);
         lbl_Name.setPrefWidth(140);
+        lbl_Name.setPadding(new Insets(5));
+        lbl_Name.setBackground(new Background(new BackgroundFill(Color.BLACK,new CornerRadii(5),new Insets(0))));
+        lbl_Name.setAlignment(Pos.CENTER);
+
 
         Label lbl_Price = new Label();
         lbl_Price.setText("Price: " + stuff.getPrice());
         lbl_Price.setFont(Font.font(lbl_Price.getFont().getFamily(), FontWeight.BOLD, 15));
-        lbl_Price.setTextFill(Color.web("#FFC26F"));
+        lbl_Price.setTextFill(Color.WHITE);
         lbl_Price.setPrefWidth(130);
-        lbl_Price.setAlignment(Pos.CENTER_LEFT);
+        lbl_Price.setAlignment(Pos.CENTER);
+        lbl_Price.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5), new Insets(0))));
+        lbl_Price.setPadding(new Insets(5));
+
 
         Label lbl_Category = new Label();
         lbl_Category.setText("Category: " + stuff.getCategory().toString().toLowerCase());
         lbl_Category.setFont(Font.font(14));
-        lbl_Category.setTextFill(Color.web("#9DB2BF"));
+        lbl_Category.setTextFill(Color.BLACK);
         lbl_Category.setPrefWidth(140);
+        
 
         Label lbl_Count = new Label();
         lbl_Count.setText("Count:" + stuff.getCount());
         lbl_Count.setFont(Font.font(14));
-        lbl_Count.setTextFill(Color.web("#9DB2BF"));
+        lbl_Count.setTextFill(Color.BLACK);
         lbl_Count.setPrefWidth(130);
 
         Label lbl_AverageRate = new Label();
         lbl_AverageRate.setText("Rate: " + stuff.getAverageRate());
         lbl_AverageRate.setFont(Font.font(14));
-        lbl_AverageRate.setTextFill(Color.web("#9DB2BF"));
+        lbl_AverageRate.setTextFill(Color.BLACK);
         lbl_AverageRate.setAlignment(Pos.CENTER_LEFT);
         lbl_AverageRate.setPrefWidth(140);
 
@@ -117,7 +126,7 @@ public class Stg_Stuff {
         VBox vbox_Comments = new VBox();
         vbox_Comments.setPrefWidth(300);
         vbox_Comments.setPrefHeight(270);
-        vbox_Comments.setBackground(new Background(new BackgroundFill(Color.web("#DDE6ED"), new CornerRadii(0), new Insets(0))));
+        vbox_Comments.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), new Insets(0))));
         vbox_Comments.setPadding(new Insets(20, 20, 10, 10));
 
 
@@ -125,6 +134,7 @@ public class Stg_Stuff {
         scrpane_Comment.setContent(vbox_Comments);
         scrpane_Comment.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrpane_Comment.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrpane_Comment.setFitToHeight(true);
         scrpane_Comment.setBackground(new Background(new BackgroundFill(Color.web("#DDE6ED"), new CornerRadii(0), new Insets(0))));
 
 
@@ -171,9 +181,9 @@ public class Stg_Stuff {
         //Buttons {
         DropShadow dropShadow = new DropShadow();
         dropShadow.setBlurType(BlurType.GAUSSIAN);
-        dropShadow.setColor(Color.web("#585858"));
-        dropShadow.setHeight(2);
-        dropShadow.setWidth(4);
+        dropShadow.setColor(Color.BLACK);
+        dropShadow.setHeight(1);
+        dropShadow.setWidth(3);
         dropShadow.setRadius(15);
         dropShadow.setSpread(0.3);
 
@@ -182,31 +192,34 @@ public class Stg_Stuff {
         Button btn_AddToCart = new Button();
         btn_AddToCart.setText("Add to cart");
         btn_AddToCart.setPrefWidth(110);
-        btn_AddToCart.setPrefHeight(30);
-        btn_AddToCart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        btn_AddToCart.setPrefHeight(35);
+        btn_AddToCart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
         btn_AddToCart.setFont(Font.font(btn_AddToCart.getFont().getFamily(), FontWeight.BOLD, 12));
-        btn_AddToCart.setTextFill(Color.web("#27374D"));
-        btn_AddToCart.setEffect(dropShadow);
+        btn_AddToCart.setTextFill(Color.WHITE);
+        btn_AddToCart.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
+        //btn_AddToCart.setEffect(dropShadow);
 
 
         Button btn_AddComment = new Button();
         btn_AddComment.setText("Add comment");
         btn_AddComment.setPrefWidth(110);
-        btn_AddComment.setPrefHeight(30);
-        btn_AddComment.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        btn_AddComment.setPrefHeight(35);
+        btn_AddComment.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
         btn_AddComment.setFont(Font.font(btn_AddComment.getFont().getFamily(), FontWeight.BOLD, 11));
-        btn_AddComment.setTextFill(Color.web("#27374D"));
-        btn_AddComment.setEffect(dropShadow);
+        btn_AddComment.setTextFill(Color.WHITE);
+        btn_AddComment.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
+        //btn_AddComment.setEffect(dropShadow);
 
 
         Button btn_AddRate = new Button();
         btn_AddRate.setText("Rate");
         btn_AddRate.setPrefWidth(110);
-        btn_AddRate.setPrefHeight(30);
-        btn_AddRate.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        btn_AddRate.setPrefHeight(35);
+        btn_AddRate.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+        btn_AddRate.setTextFill(Color.WHITE);
         btn_AddRate.setFont(Font.font(btn_AddRate.getFont().getFamily(), FontWeight.BOLD, 12));
-        btn_AddRate.setTextFill(Color.web("#27374D"));
-        btn_AddRate.setEffect(dropShadow);
+        btn_AddRate.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
+        //btn_AddRate.setEffect(dropShadow);
 
 
         Label lbl_BuyCount = new Label();
@@ -243,7 +256,7 @@ public class Stg_Stuff {
         }*/
 
         vBox_Buttons.setPrefWidth(150);
-        vBox_Buttons.setBackground(new Background(new BackgroundFill(Color.web("#526D82"), new CornerRadii(0), new Insets(0))));
+        vBox_Buttons.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(0), new Insets(0))));
         vBox_Buttons.getChildren().addAll(btn_AddToCart, btn_AddComment, btn_AddRate, hBox_Count);
         vBox_Buttons.setPadding(new Insets(20, 25, 0, 25));
         vBox_Buttons.setSpacing(10);
@@ -251,10 +264,12 @@ public class Stg_Stuff {
 
         //Events{
         btn_AddToCart.setOnMouseEntered(event -> {
-            btn_AddToCart.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
+            btn_AddToCart.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+            btn_AddToCart.setTextFill(Color.BLACK);
         });
         btn_AddToCart.setOnMouseExited(event -> {
-            btn_AddToCart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+            btn_AddToCart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+            btn_AddToCart.setTextFill(Color.WHITE);
         });
         btn_AddToCart.setOnMouseClicked(event -> {
             if (hBox_Count.isVisible()) {
@@ -279,10 +294,12 @@ public class Stg_Stuff {
         });
 
         btn_AddRate.setOnMouseEntered(event -> {
-            btn_AddRate.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
+            btn_AddRate.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+            btn_AddRate.setTextFill(Color.BLACK);
         });
         btn_AddRate.setOnMouseExited(event -> {
-            btn_AddRate.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+            btn_AddRate.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+            btn_AddRate.setTextFill(Color.WHITE);
         });
         btn_AddRate.setOnMouseClicked(event -> {
             if (hBox_Count.isVisible()) {
@@ -294,11 +311,12 @@ public class Stg_Stuff {
         });
 
         btn_AddComment.setOnMouseEntered(event -> {
-
-            btn_AddComment.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
+            btn_AddComment.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+            btn_AddComment.setTextFill(Color.BLACK);
         });
         btn_AddComment.setOnMouseExited(event -> {
-            btn_AddComment.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+            btn_AddComment.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+            btn_AddComment.setTextFill(Color.WHITE);
         });
         btn_AddComment.setOnMouseClicked(event -> {
             if (UserController.getLoggedInUser() != null) {
@@ -336,26 +354,26 @@ public class Stg_Stuff {
         Label lbl_Weight = new Label();
         lbl_Weight.setText("Weight: " + stuff.getWeight());
         lbl_Weight.setFont(Font.font(14));
-        lbl_Weight.setTextFill(Color.web("#9DB2BF"));
+        lbl_Weight.setTextFill(Color.BLACK);
         lbl_Weight.setPrefWidth(130);
 
         Label lbl_Width = new Label();
         lbl_Width.setText("Width: " + stuff.getWidth());
         lbl_Width.setFont(Font.font(14));
-        lbl_Width.setTextFill(Color.web("#9DB2BF"));
+        lbl_Width.setTextFill(Color.BLACK);
         lbl_Width.setPrefWidth(140);
 
 
         Label lbl_Height = new Label();
         lbl_Height.setText("Height: " + stuff.getHeight());
         lbl_Height.setFont(Font.font(14));
-        lbl_Height.setTextFill(Color.web("#9DB2BF"));
+        lbl_Height.setTextFill(Color.BLACK);
         lbl_Height.setPrefWidth(130);
 
         Label lbl_Length = new Label();
         lbl_Length.setText("Length: " + stuff.getLength());
         lbl_Length.setFont(Font.font(14));
-        lbl_Length.setTextFill(Color.web("#9DB2BF"));
+        lbl_Length.setTextFill(Color.BLACK);
         lbl_Length.setPrefWidth(140);
 
         tilePane.getChildren().addAll(lbl_Weight, lbl_Width, lbl_Height, lbl_Length);
@@ -367,13 +385,13 @@ public class Stg_Stuff {
         Label lbl_CPUModel = new Label();
         lbl_CPUModel.setText("CPU: " + stuff.getCPUModel());
         lbl_CPUModel.setFont(Font.font(14));
-        lbl_CPUModel.setTextFill(Color.web("#9DB2BF"));
+        lbl_CPUModel.setTextFill(Color.BLACK);
         lbl_CPUModel.setPrefWidth(130);
 
         Label lbl_RamCapacity = new Label();
         lbl_RamCapacity.setText("Ram: " + stuff.getRAMCapacity());
         lbl_RamCapacity.setFont(Font.font(14));
-        lbl_RamCapacity.setTextFill(Color.web("#9DB2BF"));
+        lbl_RamCapacity.setTextFill(Color.BLACK);
         lbl_RamCapacity.setPrefWidth(140);
 
         Label lbl_Temp = new Label();
@@ -388,19 +406,20 @@ public class Stg_Stuff {
         lbl_Capacity.setText("Capacity: " + stuff.getCapacity());
         lbl_Capacity.setPrefWidth(130);
         lbl_Capacity.setFont(Font.font(14));
-        lbl_Capacity.setTextFill(Color.web("#9DB2BF"));
+        lbl_Capacity.setTextFill(Color.BLACK);
 
         Label lbl_ReadSpeed = new Label();
         lbl_ReadSpeed.setText("Read speed: " + stuff.getReadSpeed());
         lbl_ReadSpeed.setPrefWidth(140);
         lbl_ReadSpeed.setFont(Font.font(14));
-        lbl_ReadSpeed.setTextFill(Color.web("#9DB2BF"));
+        lbl_ReadSpeed.setTextFill(Color.BLACK);
+
 
         Label lbl_WriteSpeed = new Label();
         lbl_WriteSpeed.setText("Write speed: " + stuff.getWriteSpeed());
         lbl_WriteSpeed.setFont(Font.font(14));
-        lbl_WriteSpeed.setTextFill(Color.web("#9DB2BF"));
-        lbl_WriteSpeed.prefWidth(140);
+        lbl_WriteSpeed.setTextFill(Color.BLACK);
+        lbl_WriteSpeed.prefWidth(130);
 
 
         tilePane.getChildren().addAll(lbl_Capacity, lbl_ReadSpeed, lbl_WriteSpeed);
@@ -413,11 +432,11 @@ public class Stg_Stuff {
         lbl_Capacity.setText("Capacity: " + stuff.getCapacity());
         lbl_Capacity.setPrefWidth(130);
         lbl_Capacity.setFont(Font.font(14));
-        lbl_Capacity.setTextFill(Color.web("#9DB2BF"));
+        lbl_Capacity.setTextFill(Color.BLACK);
 
         Label lbl_Version = new Label();
         lbl_Version.setText("Version: " + stuff.getVersion());
-        lbl_Version.setTextFill(Color.web("#9DB2BF"));
+        lbl_Version.setTextFill(Color.BLACK);
         lbl_Version.setPrefWidth(140);
         lbl_Version.setFont(Font.font(14));
     }
@@ -427,13 +446,13 @@ public class Stg_Stuff {
         lbl_productDate.setText("PRO: " + food.getPro());
         lbl_productDate.setPrefWidth(130);
         lbl_productDate.setFont(Font.font(14));
-        lbl_productDate.setTextFill(Color.web("#9DB2BF"));
+        lbl_productDate.setTextFill(Color.BLACK);
 
         Label lbl_ExpireDate = new Label();
         lbl_ExpireDate.setText("EXP: " + food.getExpireDate());
         lbl_ExpireDate.setPrefWidth(140);
         lbl_ExpireDate.setFont(Font.font(14));
-        lbl_ExpireDate.setTextFill(Color.web("#9DB2BF"));
+        lbl_ExpireDate.setTextFill(Color.BLACK);
 
         Label lbl_Temp = new Label();
 
@@ -445,7 +464,7 @@ public class Stg_Stuff {
         lbl_ProducerCountry.setText("Producer country: " + stuff.getProducerCountry());
         lbl_ProducerCountry.setPrefWidth(130);
         lbl_ProducerCountry.setFont(Font.font(14));
-        lbl_ProducerCountry.setTextFill(Color.web("#9DB2BF"));
+        lbl_ProducerCountry.setTextFill(Color.BLACK);
 
         tilePane.getChildren().add(lbl_ProducerCountry);
     }
@@ -457,19 +476,19 @@ public class Stg_Stuff {
         lbl_ProducerCountry.setText("Producer country: " + stuff.getProducerCountry());
         lbl_ProducerCountry.setPrefWidth(140);
         lbl_ProducerCountry.setFont(Font.font(14));
-        lbl_ProducerCountry.setTextFill(Color.web("#9DB2BF"));
+        lbl_ProducerCountry.setTextFill(Color.BLACK);
 
         Label lbl_PaperMaterial = new Label();
         lbl_PaperMaterial.setText("Paper material: " + stuff.getPaperMaterial());
         lbl_PaperMaterial.setPrefWidth(130);
         lbl_PaperMaterial.setFont(Font.font(14));
-        lbl_PaperMaterial.setTextFill(Color.web("#9DB2BF"));
+        lbl_PaperMaterial.setTextFill(Color.BLACK);
 
         Label lbl_PaperCount = new Label();
         lbl_PaperCount.setText("Paper count: " + stuff.getPaperCount());
         lbl_PaperCount.setPrefWidth(140);
         lbl_PaperCount.setFont(Font.font(14));
-        lbl_PaperCount.setTextFill(Color.web("#000000"));
+        lbl_PaperCount.setTextFill(Color.BLACK);
 
         tilePane.getChildren().addAll(lbl_ProducerCountry, lbl_PaperMaterial, lbl_PaperCount);
     }
@@ -481,7 +500,7 @@ public class Stg_Stuff {
         lbl_Color.setText("Color: " + stuff.getColor());
         lbl_Color.setPrefWidth(140);
         lbl_Color.setFont(Font.font(14));
-        lbl_Color.setTextFill(Color.web("#9DB2BF"));
+        lbl_Color.setTextFill(Color.BLACK);
 
         Label lbl_Temp = new Label();
 
@@ -495,7 +514,7 @@ public class Stg_Stuff {
         lbl_PencilMode.setText("Model: " + stuff.getPencilModel());
         lbl_PencilMode.setPrefWidth(140);
         lbl_PencilMode.setFont(Font.font(14));
-        lbl_PencilMode.setTextFill(Color.web("#9DB2BF"));
+        lbl_PencilMode.setTextFill(Color.BLACK);
 
         tilePane.getChildren().add(lbl_PencilMode);
     }
@@ -505,7 +524,7 @@ public class Stg_Stuff {
         lbl_CompanyName.setText("Company: " + stuff.getCompanyName());
         lbl_CompanyName.setPrefWidth(130);
         lbl_CompanyName.setFont(Font.font(14));
-        lbl_CompanyName.setTextFill(Color.web("#9DB2BF"));
+        lbl_CompanyName.setTextFill(Color.BLACK);
 
         tilePane.getChildren().add(lbl_CompanyName);
     }
@@ -516,7 +535,7 @@ public class Stg_Stuff {
         Label lbl_MotorCapacity = new Label();
         lbl_MotorCapacity.setText("Motor capacity: " + stuff.getMotorCapacity());
         lbl_MotorCapacity.setPrefWidth(140);
-        lbl_MotorCapacity.setTextFill(Color.web("#9DB2BF"));
+        lbl_MotorCapacity.setTextFill(Color.BLACK);
         lbl_MotorCapacity.setFont(Font.font(14));
 
         Label lbl_isAutomate = new Label();
@@ -525,7 +544,7 @@ public class Stg_Stuff {
         else lbl_isAutomate.setText("Automate: No");
         lbl_isAutomate.setPrefWidth(130);
         lbl_isAutomate.setFont(Font.font(14));
-        lbl_isAutomate.setTextFill(Color.web("#000000"));
+        lbl_isAutomate.setTextFill(Color.BLACK);
 
         tilePane.getChildren().addAll(lbl_MotorCapacity, lbl_isAutomate);
     }
@@ -537,7 +556,7 @@ public class Stg_Stuff {
         lbl_BicycleType.setText("Type: " + stuff.getBicycleType().toString().toLowerCase());
         lbl_BicycleType.setFont(Font.font(14));
         lbl_BicycleType.setPrefWidth(140);
-        lbl_BicycleType.setTextFill(Color.web("#9DB2BF"));
+        lbl_BicycleType.setTextFill(Color.BLACK);
 
         Label lbl_Temp = new Label();
 
