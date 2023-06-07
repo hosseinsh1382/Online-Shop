@@ -62,7 +62,7 @@ public class Stg_Login {
 
         TextField txt_Username = new TextField();
         txt_Username.setPrefSize(200, lbl_Username.getHeight());
-        txt_Username.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
+        txt_Username.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
         txt_Username.setPadding(new Insets(8));
         txt_Username.setFont(Font.font(14));
 
@@ -84,7 +84,7 @@ public class Stg_Login {
 
         TextField txt_Password = new TextField();
         txt_Password.setPrefSize(200, lbl_Password.getHeight());
-        txt_Password.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
+        txt_Password.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
         txt_Password.setPadding(new Insets(8));
         txt_Password.setFont(Font.font(14));
 
