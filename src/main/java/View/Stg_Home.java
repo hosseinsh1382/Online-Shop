@@ -57,56 +57,66 @@ public class Stg_Home {
         btn_Login.setMinWidth(60);
         btn_Login.setMinHeight(30);
         btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.BOLD, 13));
-        btn_Login.setTextFill(Color.web("#27374D"));
-        btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        btn_Login.setTextFill(Color.WHITE);
+        btn_Login.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(20), new Insets(0))));
         btn_Login.setEffect(dropShadow);
         btn_Login.setCursor(Cursor.HAND);
 
 
         Button btn_Cart = new Button();
         btn_Cart.setText("Cart");
-        btn_Cart.setPrefWidth(80);
-        btn_Cart.setPrefHeight(30);
+        btn_Cart.setPrefWidth(100);
+        btn_Cart.setPrefHeight(35);
         btn_Cart.setMinWidth(60);
         btn_Cart.setMinHeight(30);
         btn_Cart.setFont(Font.font(btn_Cart.getFont().getFamily(), FontWeight.BOLD, 13));
-        btn_Cart.setTextFill(Color.web("#27374D"));
-        btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+        btn_Cart.setTextFill(Color.WHITE);
+        btn_Cart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
         btn_Cart.setEffect(dropShadow);
         btn_Cart.setCursor(Cursor.HAND);
+        btn_Cart.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
 
 
         // Events{
+        btn_SignUp.setOnMouseEntered(event -> {
+            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+            btn_SignUp.setTextFill(Color.BLACK);
+            btn_SignUp.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
+        });
+        btn_SignUp.setOnMouseExited(event -> {
+            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+            btn_SignUp.setTextFill(Color.WHITE);
+        });
+        btn_SignUp.setOnMouseClicked(event -> {
+            stage.close();
+            new Stg_SignUp().show();
+        });
+
         btn_Login.setOnMouseEntered(event -> {
-            btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
+            btn_Login.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+            btn_Login.setTextFill(Color.BLACK);
+            btn_Login.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
         });
         btn_Login.setOnMouseExited(event -> {
-            btn_Login.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+            btn_Login.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(20), new Insets(0))));
+            btn_Login.setTextFill(Color.WHITE);
+            btn_Login.setBorder(Border.EMPTY);
         });
-        btn_Login.setOnMouseClicked(event ->{
+        btn_Login.setOnMouseClicked(event -> {
             Stg_Login loginPage = new Stg_Login();
             stage.close();
             loginPage.show();
         });
 
-        btn_SignUp.setOnMouseEntered(event -> {
-            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
-        });
-        btn_SignUp.setOnMouseExited(event -> {
-            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
-        });
-        btn_SignUp.setOnMouseClicked(event ->{
-            stage.close();
-            new Stg_SignUp().show();
-        });
-
         btn_Cart.setOnMouseEntered(event -> {
-            btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#bbcad0"), new CornerRadii(5), new Insets(0))));
+            btn_Cart.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+            btn_Cart.setTextFill(Color.BLACK);
         });
         btn_Cart.setOnMouseExited(event -> {
-            btn_Cart.setBackground(new Background(new BackgroundFill(Color.web("#9DB2BF"), new CornerRadii(20), new Insets(0))));
+            btn_Cart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+            btn_Cart.setTextFill(Color.WHITE);
         });
-        btn_Cart.setOnMouseClicked(event ->{
+        btn_Cart.setOnMouseClicked(event -> {
             Stg_Cart cartPage = new Stg_Cart();
             cartPage.show();
         });
@@ -138,16 +148,17 @@ public class Stg_Home {
         tilePane_Stuffs.setVgap(20);
         tilePane_Stuffs.setPadding(new Insets(15));
         tilePane_Stuffs.setAlignment(Pos.BASELINE_CENTER);
+        tilePane_Stuffs.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0), new Insets(0))));
+
 
         scrollPane.setContent(tilePane_Stuffs);
         scrollPane.setFitToWidth(true);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(0), new Insets(0))));
-        scrollPane.setStyle("-fx-background:#DDE6ED;");
+        scrollPane.setFitToHeight(true);
 
 
         VBox root = new VBox();
-        root.setBackground(new Background(new BackgroundFill(Color.web("#DDE6ED"), new CornerRadii(0), new Insets(0))));
+        root.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(0), new Insets(0))));
         showStuffs(tilePane_Stuffs);
         root.getChildren().addAll(header, separator, scrollPane);
 
@@ -177,22 +188,21 @@ public class Stg_Home {
             Label lbl_Name = new Label();
             lbl_Name.setFont(Font.font(lbl_Name.getFont().getFamily(), FontWeight.BOLD, 15));
             lbl_Name.setPadding(new Insets(0, 0, 30, 0));
-            lbl_Name.setTextFill(Color.web("#9DB2BF"));
-            lbl_Name.setEffect(shadow);
+            lbl_Name.setTextFill(Color.BLACK);
 
             Label lbl_Category = new Label();
             lbl_Category.setFont(Font.font(13));
-            lbl_Category.setTextFill(Color.web("#9DB2BF"));
+            lbl_Category.setTextFill(Color.BLACK);
             lbl_Category.setPadding(new Insets(0, 0, 5, 0));
 
             Label lbl_Count = new Label();
             lbl_Count.setFont(Font.font(13));
             lbl_Count.setPadding(new Insets(0, 0, 5, 0));
-            lbl_Count.setTextFill(Color.web("#9DB2BF"));
+            lbl_Count.setTextFill(Color.BLACK);
 
             Label lbl_AverageRate = new Label();
             lbl_AverageRate.setFont(Font.font(13));
-            lbl_AverageRate.setTextFill(Color.web("#9DB2BF"));
+            lbl_AverageRate.setTextFill(Color.BLACK);
 
             VBox vBox = new VBox(lbl_Category, lbl_Count, lbl_AverageRate);
             vBox.setAlignment(Pos.CENTER_LEFT);
@@ -201,8 +211,8 @@ public class Stg_Home {
             lbl_Price.setFont(Font.font(15));
             lbl_Price.setFont(Font.font(lbl_Price.getFont().getFamily(), FontWeight.BOLD, 15));
             lbl_Price.setPadding(new Insets(30, 0, 0, 0));
-            lbl_Price.setTextFill(Color.web("#C88EA7"));
-            lbl_Price.setEffect(shadow);
+            lbl_Price.setTextFill(Color.DARKRED);
+            //lbl_Price.setEffect(shadow);
 
             lbl_Name.setText("Name: " + s.getName());
             lbl_Category.setText("Category: " + s.getCategory().toString().toLowerCase());
@@ -211,7 +221,7 @@ public class Stg_Home {
             lbl_Price.setText("Price: " + s.getPrice());
 
             VBox vBox_Stuff = new VBox();
-            vBox_Stuff.setBackground(new Background(new BackgroundFill(Color.web("#27374D"), new CornerRadii(10), new Insets(0))));
+            vBox_Stuff.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(10), new Insets(0))));
             vBox_Stuff.setCursor(Cursor.HAND);
 
 
