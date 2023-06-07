@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class UserController {
 
-    private static User loggedInUser = null;
+    private static User loggedInUser = new Buyer("null","null",null,null);
     private static ArrayList<User> users = new ArrayList<>();
 
     public static void editUsername(User user, String username) {

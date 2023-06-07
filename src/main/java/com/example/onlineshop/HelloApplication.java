@@ -5,6 +5,7 @@ import Model.Comment;
 import Model.Stuffs.DigitalStuffs.DataStoring.SSD;
 import Model.Stuffs.DigitalStuffs.PC;
 import Model.User.Buyer;
+import View.Stg_Cart;
 import View.Stg_Home;
 import View.Stg_Login;
 import View.Stg_SignUp;
@@ -15,11 +16,11 @@ import javafx.stage.Stage;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) {
-/*        Stg_Home homePage = new Stg_Home();
+        /*Stg_Home homePage = new Stg_Home();
         homePage.show();*/
 
-        Stg_SignUp signUpPAge = new Stg_SignUp();
-        signUpPAge.show();
+        Stg_Cart cartPage = new Stg_Cart();
+        cartPage.show();
     }
 
     public static void main(String[] args) {

@@ -69,7 +69,7 @@ public class BuyerController {
 
     }
 
-    public static String finalizeBuy() {
+    public static void finalizeBuy() throws OutOfCreditException{
         double price = 0;
         for (CartItem c : ((Buyer) UserController.getLoggedInUser()).getCart()) {
             price += c.getTotalPrice();
@@ -79,9 +79,8 @@ public class BuyerController {
             ((Buyer) UserController.getLoggedInUser()).setReceipts(newReceipt);
             ((Buyer) UserController.getLoggedInUser()).getCart().removeAll(((Buyer) UserController.getLoggedInUser()).getCart());
             ((Buyer) UserController.getLoggedInUser()).setCredit(((Buyer) UserController.getLoggedInUser()).getCredit() - price);
-            return "Successfully bought";
         }
-        return "Not enough credit";
+        else throw new OutOfCreditException();
     }
 
     public static String cancelBuy() {
