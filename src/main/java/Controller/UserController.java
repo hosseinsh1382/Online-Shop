@@ -1,6 +1,7 @@
 package Controller;
 
 import Exceptions.InvalidEmailException;
+import Exceptions.InvalidInputException;
 import Exceptions.InvalidPhoneException;
 import Model.User.Buyer;
 import Model.User.User;
@@ -11,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class UserController {
 
-    private static User loggedInUser = new Buyer("null","null",null,null);
+    private static User loggedInUser = new Buyer(null, null, null, null);
     private static ArrayList<User> users = new ArrayList<>();
 
     public static void editUsername(User user, String username) {
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     public static void editPassword(User user, String password) {
-        user.setPassword(password);
+            user.setPassword(password);
     }
 
     public static void editEmail(User user, String email) {
@@ -68,10 +69,12 @@ public class UserController {
         return true;
     }
 
-    public static boolean checkPasswordValidation(String password) {
+    public static boolean checkPasswordValidation(String password)throws InvalidInputException {
         Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\\\S+$).{8,20}$");
         Matcher matcher = pattern.matcher(password);
-        return matcher.find();
+        if(!matcher.find())
+            throw new InvalidInputException("Invalid Password");
+        return true;
     }
 
     public static boolean login(String username, String password) {
@@ -84,11 +87,11 @@ public class UserController {
         return false;
     }
 
-    public static void signUp(String username, String password, String email, String phoneNo) throws InvalidPhoneException, InvalidEmailException {
+    public static void signUp(String username, String password, String email, String phoneNo) throws InvalidInputException {
         checkEmailValidation(email);
         checkPasswordValidation(password);
         checkPhoneValidation(phoneNo);
 
-        users.add(new Buyer(username,password,email,phoneNo));
+        users.add(new Buyer(username, password, email, phoneNo));
     }
 }

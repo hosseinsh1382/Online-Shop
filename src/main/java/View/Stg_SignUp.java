@@ -1,6 +1,7 @@
 package View;
 
 import Controller.UserController;
+import Exceptions.InvalidInputException;
 import Model.User.Buyer;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -43,7 +44,7 @@ public class Stg_SignUp {
         Label lbl_Username = new Label();
         lbl_Username.setText("Username:");
         lbl_Username.setAlignment(Pos.BOTTOM_CENTER);
-        lbl_Username.setFont(Font.font(lbl_Username.getFont().getFamily(),FontWeight.BOLD,13));
+        lbl_Username.setFont(Font.font(lbl_Username.getFont().getFamily(), FontWeight.BOLD, 13));
         lbl_Username.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), new Insets(0))));
         lbl_Username.setTextFill(Color.WHITE);
         lbl_Username.setPadding(new Insets(8));
@@ -61,7 +62,7 @@ public class Stg_SignUp {
 
         Label lbl_Password = new Label();
         lbl_Password.setText("Password:");
-        lbl_Password.setFont(Font.font(lbl_Password.getFont().getFamily(),FontWeight.BOLD,13));
+        lbl_Password.setFont(Font.font(lbl_Password.getFont().getFamily(), FontWeight.BOLD, 13));
         lbl_Password.setAlignment(Pos.BOTTOM_CENTER);
         lbl_Password.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), new Insets(0))));
         lbl_Password.setPadding(new Insets(8));
@@ -83,7 +84,7 @@ public class Stg_SignUp {
 
         Label lbl_PhoneNo = new Label();
         lbl_PhoneNo.setText("Phone:");
-        lbl_PhoneNo.setFont(Font.font(lbl_PhoneNo.getFont().getFamily(),FontWeight.BOLD,13));
+        lbl_PhoneNo.setFont(Font.font(lbl_PhoneNo.getFont().getFamily(), FontWeight.BOLD, 13));
         lbl_PhoneNo.setAlignment(Pos.BOTTOM_CENTER);
         lbl_PhoneNo.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), new Insets(0))));
         lbl_PhoneNo.setPadding(new Insets(8));
@@ -105,7 +106,7 @@ public class Stg_SignUp {
 
         Label lbl_Email = new Label();
         lbl_Email.setText("Email:");
-        lbl_Email.setFont(Font.font(lbl_Email.getFont().getFamily(),FontWeight.BOLD,13));
+        lbl_Email.setFont(Font.font(lbl_Email.getFont().getFamily(), FontWeight.BOLD, 13));
         lbl_Email.setAlignment(Pos.BOTTOM_CENTER);
         lbl_Email.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), new Insets(0))));
         lbl_Email.setPadding(new Insets(8));
@@ -164,14 +165,10 @@ public class Stg_SignUp {
             btn_SignUp.setFont(Font.font(btn_SignUp.getFont().getFamily(), FontWeight.BOLD, 13));
         });
         btn_SignUp.setOnMouseClicked(event -> {
-            if (UserController.login(txt_Username.getText(), txt_Password.getText())) {
-                if (UserController.getLoggedInUser() instanceof Buyer) {
-                    Stg_Home homePage = new Stg_Home();
-                    homePage.show();
-                    stage.close();
-                }
-            } else {
-                showHomePage(stage);
+            try {
+                UserController.signUp(txt_Username.getText(), txt_Password.getText(), txt_Email.getText(), txt_PhoneNo.getText());
+            } catch (InvalidInputException e) {
+                new Stg_Error().show(e.getMessage());
             }
         });
 
@@ -183,7 +180,7 @@ public class Stg_SignUp {
             btn_Back.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(10), new Insets(0))));
             btn_Back.setTextFill(Color.BLACK);
         });
-        btn_Back.setOnMouseClicked(event ->{
+        btn_Back.setOnMouseClicked(event -> {
             showHomePage(stage);
         });
         //}
@@ -193,7 +190,7 @@ public class Stg_SignUp {
         root.getChildren().addAll(pane, vBox_Information, btn_SignUp);
         root.setPadding(new Insets(0, 40, 0, 40));
 
-       Stop[] stops = new Stop[]{
+        Stop[] stops = new Stop[]{
                 new Stop(0, Color.DARKGRAY),
                 new Stop(1, Color.LIGHTGRAY)
         };
