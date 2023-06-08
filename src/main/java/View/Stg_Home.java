@@ -271,6 +271,10 @@ public class Stg_Home {
                 btn_Profile.setTextFill(Color.WHITE);
                 btn_Profile.setBorder(Border.EMPTY);
             });
+            btn_Profile.setOnMouseClicked(event ->{
+                stage.close();
+                new Stg_Profile().show();
+            });
             //}
 
             header.getChildren().add(btn_Profile);

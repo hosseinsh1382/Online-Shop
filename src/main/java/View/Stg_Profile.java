@@ -178,6 +178,7 @@ public class Stg_Profile {
             btn_Submit.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(10), new Insets(0))));
             btn_Submit.setTextFill(Color.WHITE);
             btn_Submit.setFont(Font.font(btn_Submit.getFont().getFamily(), FontWeight.BOLD, 13));
+            btn_Submit.setBorder(Border.EMPTY);
         });
         btn_Submit.setOnMouseClicked(event -> {
             try {
@@ -193,7 +194,7 @@ public class Stg_Profile {
                 txt_Username.setText(UserController.getLoggedInUser().getUsername());
                 txt_Password.setText(UserController.getLoggedInUser().getPassword());
                 txt_Email.setText(UserController.getLoggedInUser().getEmail());
-                txt_Email.setText(UserController.getLoggedInUser().getPhoneNo());
+                txt_PhoneNo.setText(UserController.getLoggedInUser().getPhoneNo());
             }
         });
 

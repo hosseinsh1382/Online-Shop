@@ -109,6 +109,7 @@ public class Stg_Cart {
         lbl_DiscountHeader.setTextFill(Color.WHITE);
 
         Label lbl_remove = new Label();
+        lbl_remove.setPrefWidth(75);
 
 
         HBox hBox_Header = new HBox();

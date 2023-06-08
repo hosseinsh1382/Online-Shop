@@ -167,6 +167,7 @@ public class Stg_SignUp {
         btn_SignUp.setOnMouseClicked(event -> {
             try {
                 UserController.signUp(txt_Username.getText(), txt_Password.getText(), txt_Email.getText(), txt_PhoneNo.getText());
+                showHomePage(stage);
             } catch (InvalidInputException e) {
                 new Stg_Error().show(e.getMessage());
             }

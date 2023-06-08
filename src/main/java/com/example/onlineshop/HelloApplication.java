@@ -1,6 +1,7 @@
 package com.example.onlineshop;
 
 import Controller.StuffController;
+import Controller.UserController;
 import Model.Comment;
 import Model.Stuffs.DigitalStuffs.DataStoring.SSD;
 import Model.Stuffs.DigitalStuffs.PC;
@@ -23,7 +24,8 @@ public class HelloApplication extends Application {
         PC pc2 = new PC("Lenovo", 27000, 8, 1.6, 25, 4, 18, "i5-1065", "2");
         SSD ssd = new SSD("Western Digital", 2400, 10, 0.2, 12, 3, 15, 256, 32, 43);
 
-        Buyer buyer = new Buyer("a", "s", "a", "923");
+        Buyer buyer = new Buyer("hossein", "Aa123456.", "hossein@gmail.com", "09370248298");
+        UserController.getUsers().add(buyer);
 
         Comment comment = new Comment(pc.getID(), "good quality", true, buyer);
         pc.getComments().add(comment);

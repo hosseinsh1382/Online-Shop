@@ -52,7 +52,7 @@ public class Stg_Login {
 
 
         Label lbl_Username = new Label();
-        lbl_Username.setText("Username:");
+        lbl_Username.setText("Username");
         lbl_Username.setAlignment(Pos.BOTTOM_CENTER);
         lbl_Username.setFont(Font.font(lbl_Username.getFont().getFamily(),FontWeight.BOLD,13));
         lbl_Username.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
@@ -73,7 +73,7 @@ public class Stg_Login {
         hBox_Username.setAlignment(Pos.CENTER);
 
         Label lbl_Password = new Label();
-        lbl_Password.setText("Password:");
+        lbl_Password.setText("Password");
         lbl_Password.setFont(Font.font(lbl_Password.getFont().getFamily(),FontWeight.BOLD,13));
         lbl_Password.setAlignment(Pos.BOTTOM_CENTER);
         lbl_Password.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
@@ -140,7 +140,7 @@ public class Stg_Login {
                     stage.close();
                 }
             } else {
-                showHomePage(stage);
+                new Stg_Error().show("Invalid username or password");
             }
         });
 
