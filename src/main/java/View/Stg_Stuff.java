@@ -32,6 +32,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class Stg_Stuff {
@@ -57,6 +58,10 @@ public class Stg_Stuff {
         scrpane_Information.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrpane_Information.setFitToHeight(true);
 
+        Tooltip tooltip_Name = new Tooltip();
+        tooltip_Name.setShowDelay(Duration.millis(300));
+        tooltip_Name.setText(stuff.getName());
+
         Label lbl_Name = new Label();
         lbl_Name.setText("Name: " + stuff.getName());
         lbl_Name.setFont(Font.font(lbl_Name.getFont().getFamily(), FontWeight.BOLD, 15));
@@ -65,6 +70,7 @@ public class Stg_Stuff {
         lbl_Name.setPadding(new Insets(5));
         lbl_Name.setBackground(new Background(new BackgroundFill(Color.BLACK,new CornerRadii(5),new Insets(0))));
         lbl_Name.setAlignment(Pos.CENTER);
+        lbl_Name.setTooltip(tooltip_Name);
 
 
         Label lbl_Price = new Label();
@@ -120,8 +126,6 @@ public class Stg_Stuff {
         if (stuff instanceof Bicycle)
             bicycleShow((Bicycle) stuff, tilePane_Information);
 
-        Separator separator = new Separator(Orientation.VERTICAL);
-
         // Comment Column{
         VBox vbox_Comments = new VBox();
         vbox_Comments.setPrefWidth(300);
@@ -165,10 +169,11 @@ public class Stg_Stuff {
             lbl_IsBought.setFont(Font.font(14));
             lbl_IsBought.setTextFill(Color.web("#000000"));
 
-            Separator separator2 = new Separator(Orientation.VERTICAL);
-            hBox_commentItem.getChildren().addAll(lbl_CommentText, separator2, lbl_IsBought);
-            Separator separator1 = new Separator(Orientation.HORIZONTAL);
-            vbox_Comments.getChildren().addAll(hBox_commentItem, separator1);
+            Separator vSeparator = new Separator(Orientation.VERTICAL);
+            Separator hSeparator = new Separator(Orientation.HORIZONTAL);
+
+            hBox_commentItem.getChildren().addAll(lbl_CommentText, vSeparator, lbl_IsBought);
+            vbox_Comments.getChildren().addAll(hBox_commentItem, hSeparator);
         }
         TextField textField_NewComment = new TextField();
         textField_NewComment.setVisible(false);

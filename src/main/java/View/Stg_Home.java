@@ -175,7 +175,7 @@ public class Stg_Home {
         dropShadow.setRadius(15);
         dropShadow.setSpread(0.3);
 
-        if (UserController.getLoggedInUser().getUsername() == null) {
+        if (UserController.getLoggedInUser().getUsername() == "null") {
             Button btn_SignUp = new Button();
             btn_SignUp.setText("Sign Up");
             btn_SignUp.setPrefWidth(100);
