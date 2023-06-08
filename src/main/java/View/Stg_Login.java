@@ -58,6 +58,7 @@ public class Stg_Login {
         lbl_Username.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
         lbl_Username.setTextFill(Color.WHITE);
         lbl_Username.setPadding(new Insets(8));
+        lbl_Username.setPrefWidth(80);
 
 
         TextField txt_Username = new TextField();
@@ -79,7 +80,7 @@ public class Stg_Login {
         lbl_Password.setPadding(new Insets(8));
         lbl_Password.setTextFill(Color.WHITE);
         lbl_Password.setPrefWidth(lbl_Username.getPrefWidth());
-        lbl_Password.setPrefWidth(81);
+        lbl_Password.setPrefWidth(80);
 
 
         TextField txt_Password = new TextField();

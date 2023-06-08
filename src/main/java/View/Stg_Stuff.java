@@ -54,7 +54,7 @@ public class Stg_Stuff {
         ScrollPane scrpane_Information = new ScrollPane();
         scrpane_Information.setContent(tilePane_Information);
         scrpane_Information.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrpane_Information.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrpane_Information.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrpane_Information.setFitToHeight(true);
 
         Label lbl_Name = new Label();
@@ -82,7 +82,7 @@ public class Stg_Stuff {
         lbl_Category.setFont(Font.font(14));
         lbl_Category.setTextFill(Color.BLACK);
         lbl_Category.setPrefWidth(140);
-        
+
 
         Label lbl_Count = new Label();
         lbl_Count.setText("Count:" + stuff.getCount());
@@ -173,8 +173,6 @@ public class Stg_Stuff {
         TextField textField_NewComment = new TextField();
         textField_NewComment.setVisible(false);
         vbox_Comments.getChildren().add(textField_NewComment);
-
-
         //}
 
 
@@ -191,7 +189,7 @@ public class Stg_Stuff {
 
         Button btn_AddToCart = new Button();
         btn_AddToCart.setText("Add to cart");
-        btn_AddToCart.setPrefWidth(110);
+        btn_AddToCart.setPrefWidth(130);
         btn_AddToCart.setPrefHeight(35);
         btn_AddToCart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
         btn_AddToCart.setFont(Font.font(btn_AddToCart.getFont().getFamily(), FontWeight.BOLD, 12));
@@ -202,7 +200,7 @@ public class Stg_Stuff {
 
         Button btn_AddComment = new Button();
         btn_AddComment.setText("Add comment");
-        btn_AddComment.setPrefWidth(110);
+        btn_AddComment.setPrefWidth(130);
         btn_AddComment.setPrefHeight(35);
         btn_AddComment.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
         btn_AddComment.setFont(Font.font(btn_AddComment.getFont().getFamily(), FontWeight.BOLD, 11));
@@ -213,7 +211,7 @@ public class Stg_Stuff {
 
         Button btn_AddRate = new Button();
         btn_AddRate.setText("Rate");
-        btn_AddRate.setPrefWidth(110);
+        btn_AddRate.setPrefWidth(130);
         btn_AddRate.setPrefHeight(35);
         btn_AddRate.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
         btn_AddRate.setTextFill(Color.WHITE);
@@ -347,7 +345,7 @@ public class Stg_Stuff {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Stuff Information");
         stage.setScene(scene);
-        stage.show();
+        stage.showAndWait();
     }
 
     private void digitalStuffShow(DigitalStuff stuff, TilePane tilePane) {

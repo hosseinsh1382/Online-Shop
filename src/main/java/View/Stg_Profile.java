@@ -3,18 +3,27 @@ package View;
 import Controller.UserController;
 import Exceptions.InvalidInputException;
 import Model.User.Buyer;
-import javafx.geometry.*;
-import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.effect.*;
-import javafx.scene.image.*;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.*;
-import javafx.scene.text.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-
-public class Stg_SignUp {
+public class Stg_Profile {
     public void show() {
         Stage stage = new Stage();
         VBox root = new VBox();
@@ -42,15 +51,17 @@ public class Stg_SignUp {
 
 
         Label lbl_Username = new Label();
-        lbl_Username.setText("Username:");
+        lbl_Username.setText("Username");
         lbl_Username.setAlignment(Pos.BOTTOM_CENTER);
         lbl_Username.setFont(Font.font(lbl_Username.getFont().getFamily(), FontWeight.BOLD, 13));
         lbl_Username.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
         lbl_Username.setTextFill(Color.WHITE);
         lbl_Username.setPadding(new Insets(8));
+        lbl_Username.setPrefWidth(80);
 
 
         TextField txt_Username = new TextField();
+        txt_Username.setText(UserController.getLoggedInUser().getUsername());
         txt_Username.setPrefSize(200, lbl_Username.getHeight());
         txt_Username.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
         txt_Username.setPadding(new Insets(8));
@@ -61,17 +72,18 @@ public class Stg_SignUp {
         hBox_Username.setAlignment(Pos.CENTER);
 
         Label lbl_Password = new Label();
-        lbl_Password.setText("Password:");
+        lbl_Password.setText("Password");
         lbl_Password.setFont(Font.font(lbl_Password.getFont().getFamily(), FontWeight.BOLD, 13));
         lbl_Password.setAlignment(Pos.BOTTOM_CENTER);
         lbl_Password.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
         lbl_Password.setPadding(new Insets(8));
         lbl_Password.setTextFill(Color.WHITE);
         lbl_Password.setPrefWidth(lbl_Username.getPrefWidth());
-        lbl_Password.setPrefWidth(81);
+        lbl_Password.setPrefWidth(80);
 
 
         TextField txt_Password = new TextField();
+        txt_Password.setText(UserController.getLoggedInUser().getPassword());
         txt_Password.setPrefSize(200, lbl_Password.getHeight());
         txt_Password.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
         txt_Password.setPadding(new Insets(8));
@@ -83,17 +95,18 @@ public class Stg_SignUp {
 
 
         Label lbl_PhoneNo = new Label();
-        lbl_PhoneNo.setText("Phone:");
+        lbl_PhoneNo.setText("Phone");
         lbl_PhoneNo.setFont(Font.font(lbl_PhoneNo.getFont().getFamily(), FontWeight.BOLD, 13));
         lbl_PhoneNo.setAlignment(Pos.BOTTOM_CENTER);
         lbl_PhoneNo.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
         lbl_PhoneNo.setPadding(new Insets(8));
         lbl_PhoneNo.setTextFill(Color.WHITE);
         lbl_PhoneNo.setPrefWidth(lbl_Username.getPrefWidth());
-        lbl_PhoneNo.setPrefWidth(81);
+        lbl_PhoneNo.setPrefWidth(80);
 
 
         TextField txt_PhoneNo = new TextField();
+        txt_PhoneNo.setText(UserController.getLoggedInUser().getPhoneNo());
         txt_PhoneNo.setPrefSize(200, lbl_Password.getHeight());
         txt_PhoneNo.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
         txt_PhoneNo.setPadding(new Insets(8));
@@ -105,21 +118,23 @@ public class Stg_SignUp {
 
 
         Label lbl_Email = new Label();
-        lbl_Email.setText("Email:");
+        lbl_Email.setText("Email");
         lbl_Email.setFont(Font.font(lbl_Email.getFont().getFamily(), FontWeight.BOLD, 13));
         lbl_Email.setAlignment(Pos.BOTTOM_CENTER);
         lbl_Email.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5,0,0,5,false), new Insets(0))));
         lbl_Email.setPadding(new Insets(8));
         lbl_Email.setTextFill(Color.WHITE);
         lbl_Email.setPrefWidth(lbl_Username.getPrefWidth());
-        lbl_Email.setPrefWidth(81);
+        lbl_Email.setPrefWidth(80);
 
 
         TextField txt_Email = new TextField();
+        txt_Email.setText(UserController.getLoggedInUser().getEmail());
         txt_Email.setPrefSize(200, lbl_Password.getHeight());
         txt_Email.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(0,5,5,0,false), new Insets(0))));
         txt_Email.setPadding(new Insets(8));
         txt_Email.setFont(Font.font(14));
+
 
         HBox hBox_Email = new HBox();
         hBox_Email.getChildren().addAll(lbl_Email, txt_Email);
@@ -143,32 +158,42 @@ public class Stg_SignUp {
         vBox_Information.setEffect(dropShadow);
 
 
-        Button btn_SignUp = new Button();
-        btn_SignUp.setText("Submit");
-        btn_SignUp.setPrefSize(200, 40);
-        btn_SignUp.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(10), new Insets(0))));
-        btn_SignUp.setEffect(dropShadow);
-        btn_SignUp.setFont(Font.font(btn_SignUp.getFont().getFamily(), FontWeight.BOLD, 13));
-        btn_SignUp.setTextFill(Color.WHITE);
-        btn_SignUp.setCursor(Cursor.HAND);
+        Button btn_Submit = new Button();
+        btn_Submit.setText("Save");
+        btn_Submit.setPrefSize(200, 40);
+        btn_Submit.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(10), new Insets(0))));
+        btn_Submit.setEffect(dropShadow);
+        btn_Submit.setFont(Font.font(btn_Submit.getFont().getFamily(), FontWeight.BOLD, 13));
+        btn_Submit.setTextFill(Color.WHITE);
+        btn_Submit.setCursor(Cursor.HAND);
 
         //Events{
-        btn_SignUp.setOnMouseEntered(events -> {
-            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(0), new Insets(0))));
-            btn_SignUp.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(1))));
-            btn_SignUp.setTextFill(Color.BLACK);
-            btn_SignUp.setFont(Font.font(btn_SignUp.getFont().getFamily(), FontWeight.BOLD, 13));
+        btn_Submit.setOnMouseEntered(events -> {
+            btn_Submit.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, new CornerRadii(0), new Insets(0))));
+            btn_Submit.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(10), new BorderWidths(1))));
+            btn_Submit.setTextFill(Color.BLACK);
+            btn_Submit.setFont(Font.font(btn_Submit.getFont().getFamily(), FontWeight.BOLD, 13));
         });
-        btn_SignUp.setOnMouseExited(event -> {
-            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(10), new Insets(0))));
-            btn_SignUp.setTextFill(Color.WHITE);
-            btn_SignUp.setFont(Font.font(btn_SignUp.getFont().getFamily(), FontWeight.BOLD, 13));
+        btn_Submit.setOnMouseExited(event -> {
+            btn_Submit.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(10), new Insets(0))));
+            btn_Submit.setTextFill(Color.WHITE);
+            btn_Submit.setFont(Font.font(btn_Submit.getFont().getFamily(), FontWeight.BOLD, 13));
         });
-        btn_SignUp.setOnMouseClicked(event -> {
+        btn_Submit.setOnMouseClicked(event -> {
             try {
-                UserController.signUp(txt_Username.getText(), txt_Password.getText(), txt_Email.getText(), txt_PhoneNo.getText());
-            } catch (InvalidInputException e) {
+                UserController.editUsername(txt_Username.getText());
+                UserController.editPassword(txt_Password.getText());
+                UserController.editEmail(txt_Email.getText());
+                UserController.editPhoneNo(txt_PhoneNo.getText());
+            }
+            catch (InvalidInputException e){
                 new Stg_Error().show(e.getMessage());
+            }
+            finally {
+                txt_Username.setText(UserController.getLoggedInUser().getUsername());
+                txt_Password.setText(UserController.getLoggedInUser().getPassword());
+                txt_Email.setText(UserController.getLoggedInUser().getEmail());
+                txt_Email.setText(UserController.getLoggedInUser().getPhoneNo());
             }
         });
 
@@ -187,7 +212,7 @@ public class Stg_SignUp {
 
         root.setAlignment(Pos.CENTER);
         root.setSpacing(10);
-        root.getChildren().addAll(pane, vBox_Information, btn_SignUp);
+        root.getChildren().addAll(pane, vBox_Information, btn_Submit);
         root.setPadding(new Insets(0, 40, 0, 40));
 
         Stop[] stops = new Stop[]{
@@ -202,7 +227,7 @@ public class Stg_SignUp {
 
         stage.setResizable(false);
         stage.setScene(scene);
-        stage.setTitle("Sign Up");
+        stage.setTitle(UserController.getLoggedInUser().getUsername() + " Profile");
         stage.show();
     }
 

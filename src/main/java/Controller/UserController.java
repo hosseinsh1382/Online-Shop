@@ -15,20 +15,26 @@ public class UserController {
     private static User loggedInUser = new Buyer(null, null, null, null);
     private static ArrayList<User> users = new ArrayList<>();
 
-    public static void editUsername(User user, String username) {
-        user.setUsername(username);
+    public static void editUsername(String username) {
+        loggedInUser.setUsername(username);
     }
 
-    public static void editPassword(User user, String password) {
-            user.setPassword(password);
+    public static void editPassword(String password) throws InvalidInputException {
+        if (checkPasswordValidation(password)) {
+            loggedInUser.setPassword(password);
+        }
     }
 
-    public static void editEmail(User user, String email) {
-        user.setEmail(email);
+    public static void editEmail(String email) throws InvalidEmailException {
+        if (checkEmailValidation(email)) {
+            loggedInUser.setEmail(email);
+        }
     }
 
-    public static void editPhoneNo(User user, String phoneNo) {
-        user.setPhoneNo(phoneNo);
+    public static void editPhoneNo(String phoneNo) throws InvalidPhoneException {
+        if (checkPhoneValidation(phoneNo)) {
+            loggedInUser.setPhoneNo(phoneNo);
+        }
     }
 
     public static ArrayList<User> getUsers() {
@@ -69,10 +75,10 @@ public class UserController {
         return true;
     }
 
-    public static boolean checkPasswordValidation(String password)throws InvalidInputException {
-        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\\\S+$).{8,20}$");
+    public static boolean checkPasswordValidation(String password) throws InvalidInputException {
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=().])(?=\\S+$).{8,20}$");
         Matcher matcher = pattern.matcher(password);
-        if(!matcher.find())
+        if (!matcher.find())
             throw new InvalidInputException("Invalid Password");
         return true;
     }

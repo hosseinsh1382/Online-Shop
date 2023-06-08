@@ -1,7 +1,9 @@
 package View;
 
 import Controller.StuffController;
+import Controller.UserController;
 import Model.Stuffs.Stuff;
+import Model.User.Buyer;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -28,115 +30,11 @@ public class Stg_Home {
     Stage stage = new Stage();
 
     public void show() {
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setBlurType(BlurType.GAUSSIAN);
-        dropShadow.setColor(Color.web("#585858"));
-        dropShadow.setHeight(2);
-        dropShadow.setWidth(5);
-        dropShadow.setRadius(15);
-        dropShadow.setSpread(0.3);
 
         //Header{
-        Button btn_SignUp = new Button();
-        btn_SignUp.setText("Sign Up");
-        btn_SignUp.setPrefWidth(100);
-        btn_SignUp.setPrefHeight(35);
-        btn_SignUp.setMinWidth(60);
-        btn_SignUp.setMinHeight(30);
-        btn_SignUp.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
-        btn_SignUp.setFont(Font.font(btn_SignUp.getFont().getFamily(), FontWeight.BOLD, 13));
-        btn_SignUp.setTextFill(Color.WHITE);
-        btn_SignUp.setEffect(dropShadow);
-        btn_SignUp.setCursor(Cursor.HAND);
-
-
-        Button btn_Login = new Button();
-        btn_Login.setText("Login");
-        btn_Login.setPrefWidth(100);
-        btn_Login.setPrefHeight(35);
-        btn_Login.setMinWidth(60);
-        btn_Login.setMinHeight(30);
-        btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.BOLD, 13));
-        btn_Login.setTextFill(Color.WHITE);
-        btn_Login.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(20), new Insets(0))));
-        btn_Login.setEffect(dropShadow);
-        btn_Login.setCursor(Cursor.HAND);
-
-
-        Button btn_Cart = new Button();
-        btn_Cart.setText("Cart");
-        btn_Cart.setPrefWidth(100);
-        btn_Cart.setPrefHeight(35);
-        btn_Cart.setMinWidth(60);
-        btn_Cart.setMinHeight(30);
-        btn_Cart.setFont(Font.font(btn_Cart.getFont().getFamily(), FontWeight.BOLD, 13));
-        btn_Cart.setTextFill(Color.WHITE);
-        btn_Cart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
-        btn_Cart.setEffect(dropShadow);
-        btn_Cart.setCursor(Cursor.HAND);
-        btn_Cart.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
-
-
-        // Events{
-        btn_SignUp.setOnMouseEntered(event -> {
-            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
-            btn_SignUp.setTextFill(Color.BLACK);
-            btn_SignUp.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
-        });
-        btn_SignUp.setOnMouseExited(event -> {
-            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
-            btn_SignUp.setTextFill(Color.WHITE);
-        });
-        btn_SignUp.setOnMouseClicked(event -> {
-            stage.close();
-            new Stg_SignUp().show();
-        });
-
-        btn_Login.setOnMouseEntered(event -> {
-            btn_Login.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
-            btn_Login.setTextFill(Color.BLACK);
-            btn_Login.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
-        });
-        btn_Login.setOnMouseExited(event -> {
-            btn_Login.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(20), new Insets(0))));
-            btn_Login.setTextFill(Color.WHITE);
-            btn_Login.setBorder(Border.EMPTY);
-        });
-        btn_Login.setOnMouseClicked(event -> {
-            Stg_Login loginPage = new Stg_Login();
-            stage.close();
-            loginPage.show();
-        });
-
-        btn_Cart.setOnMouseEntered(event -> {
-            btn_Cart.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
-            btn_Cart.setTextFill(Color.BLACK);
-        });
-        btn_Cart.setOnMouseExited(event -> {
-            btn_Cart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
-            btn_Cart.setTextFill(Color.WHITE);
-        });
-        btn_Cart.setOnMouseClicked(event -> {
-            Stg_Cart cartPage = new Stg_Cart();
-            cartPage.show();
-        });
-        //}
-
-
         AnchorPane header = new AnchorPane();
         header.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, new CornerRadii(0), new Insets(0))));
-        header.getChildren().addAll(btn_Login, btn_SignUp, btn_Cart);
-        AnchorPane.setTopAnchor(btn_SignUp, 20.0);
-        AnchorPane.setLeftAnchor(btn_SignUp, 20.0);
-        AnchorPane.setBottomAnchor(btn_SignUp, 20.0);
-
-        AnchorPane.setLeftAnchor(btn_Login, 135.0);
-        AnchorPane.setTopAnchor(btn_Login, 20.0);
-        AnchorPane.setBottomAnchor(btn_Login, 20.0);
-
-        AnchorPane.setTopAnchor(btn_Cart, 20.0);
-        AnchorPane.setRightAnchor(btn_Cart, 20.0);
-        AnchorPane.setBottomAnchor(btn_Cart, 20.0);
+        showHeader(header);
         //}
 
         Separator separator = new Separator(Orientation.HORIZONTAL);
@@ -212,7 +110,6 @@ public class Stg_Home {
             lbl_Price.setFont(Font.font(lbl_Price.getFont().getFamily(), FontWeight.BOLD, 15));
             lbl_Price.setPadding(new Insets(30, 0, 0, 0));
             lbl_Price.setTextFill(Color.DARKRED);
-            //lbl_Price.setEffect(shadow);
 
             lbl_Name.setText("Name: " + s.getName());
             lbl_Category.setText("Category: " + s.getCategory().toString().toLowerCase());
@@ -267,6 +164,155 @@ public class Stg_Home {
 
             tilePane.getChildren().add(vBox_Stuff);
         }
+    }
+
+    public void showHeader(AnchorPane header) {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setBlurType(BlurType.GAUSSIAN);
+        dropShadow.setColor(Color.web("#585858"));
+        dropShadow.setHeight(2);
+        dropShadow.setWidth(5);
+        dropShadow.setRadius(15);
+        dropShadow.setSpread(0.3);
+
+        if (UserController.getLoggedInUser().getUsername() == null) {
+            Button btn_SignUp = new Button();
+            btn_SignUp.setText("Sign Up");
+            btn_SignUp.setPrefWidth(100);
+            btn_SignUp.setPrefHeight(35);
+            btn_SignUp.setMinWidth(60);
+            btn_SignUp.setMinHeight(30);
+            btn_SignUp.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+            btn_SignUp.setFont(Font.font(btn_SignUp.getFont().getFamily(), FontWeight.BOLD, 13));
+            btn_SignUp.setTextFill(Color.WHITE);
+            btn_SignUp.setEffect(dropShadow);
+            btn_SignUp.setCursor(Cursor.HAND);
+
+
+            Button btn_Login = new Button();
+            btn_Login.setText("Login");
+            btn_Login.setPrefWidth(100);
+            btn_Login.setPrefHeight(35);
+            btn_Login.setMinWidth(60);
+            btn_Login.setMinHeight(30);
+            btn_Login.setFont(Font.font(btn_Login.getFont().getFamily(), FontWeight.BOLD, 13));
+            btn_Login.setTextFill(Color.WHITE);
+            btn_Login.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(20), new Insets(0))));
+            btn_Login.setEffect(dropShadow);
+            btn_Login.setCursor(Cursor.HAND);
+
+            AnchorPane.setTopAnchor(btn_SignUp, 20.0);
+            AnchorPane.setLeftAnchor(btn_SignUp, 20.0);
+            AnchorPane.setBottomAnchor(btn_SignUp, 20.0);
+
+            AnchorPane.setLeftAnchor(btn_Login, 135.0);
+            AnchorPane.setTopAnchor(btn_Login, 20.0);
+            AnchorPane.setBottomAnchor(btn_Login, 20.0);
+
+            //Events{
+            btn_SignUp.setOnMouseEntered(event -> {
+                btn_SignUp.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+                btn_SignUp.setTextFill(Color.BLACK);
+                btn_SignUp.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
+            });
+            btn_SignUp.setOnMouseExited(event -> {
+                btn_SignUp.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+                btn_SignUp.setTextFill(Color.WHITE);
+            });
+            btn_SignUp.setOnMouseClicked(event -> {
+                stage.close();
+                new Stg_SignUp().show();
+            });
+
+            btn_Login.setOnMouseEntered(event -> {
+                btn_Login.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+                btn_Login.setTextFill(Color.BLACK);
+                btn_Login.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
+            });
+            btn_Login.setOnMouseExited(event -> {
+                btn_Login.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(20), new Insets(0))));
+                btn_Login.setTextFill(Color.WHITE);
+                btn_Login.setBorder(Border.EMPTY);
+            });
+            btn_Login.setOnMouseClicked(event -> {
+                Stg_Login loginPage = new Stg_Login();
+                stage.close();
+                loginPage.show();
+            });
+            //}
+
+            header.getChildren().addAll(btn_SignUp, btn_Login);
+        }
+        else {
+            Button btn_Profile = new Button();
+            btn_Profile.setText("Profile");
+            btn_Profile.setPrefWidth(100);
+            btn_Profile.setPrefHeight(35);
+            btn_Profile.setMinWidth(60);
+            btn_Profile.setMinHeight(30);
+            btn_Profile.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(20), new Insets(0))));
+            btn_Profile.setFont(Font.font(btn_Profile.getFont().getFamily(), FontWeight.BOLD, 13));
+            btn_Profile.setTextFill(Color.WHITE);
+            btn_Profile.setEffect(dropShadow);
+            btn_Profile.setCursor(Cursor.HAND);
+
+            AnchorPane.setTopAnchor(btn_Profile, 20.0);
+            AnchorPane.setLeftAnchor(btn_Profile, 20.0);
+            AnchorPane.setBottomAnchor(btn_Profile, 20.0);
+
+            //Events {
+            btn_Profile.setOnMouseEntered(event -> {
+                btn_Profile.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+                btn_Profile.setTextFill(Color.BLACK);
+                btn_Profile.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
+            });
+            btn_Profile.setOnMouseExited(event -> {
+                btn_Profile.setBackground(new Background(new BackgroundFill(Color.DARKRED, new CornerRadii(20), new Insets(0))));
+                btn_Profile.setTextFill(Color.WHITE);
+                btn_Profile.setBorder(Border.EMPTY);
+            });
+            //}
+
+            header.getChildren().add(btn_Profile);
+        }
+
+        Button btn_Cart = new Button();
+        btn_Cart.setText("Cart");
+        btn_Cart.setPrefWidth(100);
+        btn_Cart.setPrefHeight(35);
+        btn_Cart.setMinWidth(60);
+        btn_Cart.setMinHeight(30);
+        btn_Cart.setFont(Font.font(btn_Cart.getFont().getFamily(), FontWeight.BOLD, 13));
+        btn_Cart.setTextFill(Color.WHITE);
+        btn_Cart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+        btn_Cart.setEffect(dropShadow);
+        btn_Cart.setCursor(Cursor.HAND);
+        btn_Cart.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), new BorderWidths(1))));
+
+
+        // Events{
+        btn_Cart.setOnMouseEntered(event -> {
+            btn_Cart.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(20), new Insets(0))));
+            btn_Cart.setTextFill(Color.BLACK);
+        });
+        btn_Cart.setOnMouseExited(event -> {
+            btn_Cart.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(20), new Insets(0))));
+            btn_Cart.setTextFill(Color.WHITE);
+        });
+        btn_Cart.setOnMouseClicked(event -> {
+            Stg_Cart cartPage = new Stg_Cart();
+            cartPage.show();
+        });
+        //}
+
+
+        header.getChildren().add(btn_Cart);
+
+
+        AnchorPane.setTopAnchor(btn_Cart, 20.0);
+        AnchorPane.setRightAnchor(btn_Cart, 20.0);
+        AnchorPane.setBottomAnchor(btn_Cart, 20.0);
+        //}
     }
 
 }
