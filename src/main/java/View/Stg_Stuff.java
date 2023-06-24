@@ -68,7 +68,7 @@ public class Stg_Stuff {
         lbl_Name.setTextFill(Color.WHITE);
         lbl_Name.setPrefWidth(140);
         lbl_Name.setPadding(new Insets(5));
-        lbl_Name.setBackground(new Background(new BackgroundFill(Color.BLACK,new CornerRadii(5),new Insets(0))));
+        lbl_Name.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(5), new Insets(0))));
         lbl_Name.setAlignment(Pos.CENTER);
         lbl_Name.setTooltip(tooltip_Name);
 
@@ -322,7 +322,7 @@ public class Stg_Stuff {
             btn_AddComment.setTextFill(Color.WHITE);
         });
         btn_AddComment.setOnMouseClicked(event -> {
-            if (UserController.getLoggedInUser() != null) {
+            if (!UserController.getLoggedInUser().getUsername().equals("null")) {
 
                 if (textField_NewComment.isVisible()) {
                     CommentController.addComment(stuff, textField_NewComment.getText());

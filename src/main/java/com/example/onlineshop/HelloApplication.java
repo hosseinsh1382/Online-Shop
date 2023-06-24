@@ -7,6 +7,7 @@ import Model.Stuffs.DigitalStuffs.DataStoring.SSD;
 import Model.Stuffs.DigitalStuffs.PC;
 import Model.User.Buyer;
 import View.Stg_Home;
+import View.Stg_PaymentGateway;
 import View.Stg_Profile;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,6 +18,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) {
         Stg_Home homePage = new Stg_Home();
         homePage.show();
+
     }
 
     public static void main(String[] args) {

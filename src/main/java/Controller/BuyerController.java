@@ -1,5 +1,6 @@
 package Controller;
 
+import Exceptions.InvalidInputException;
 import Exceptions.OutOfCreditException;
 import Exceptions.OutOfStockCountException;
 import Model.Discount;
@@ -96,18 +97,21 @@ public class BuyerController {
         UserController.getUsers().add(newBuyer);
     }
 
-    public static boolean cardNoValidation(String cardNo) {
+    public static void cardNoValidation(String cardNo) throws InvalidInputException{
         Pattern pattern = Pattern.compile("^\\d{16}");
         Matcher matcher = pattern.matcher(cardNo);
 
-        return matcher.find();
+        if (!matcher.find()){
+            throw new InvalidInputException("Invalid card number!");
+        }
     }
 
-    public static boolean cardCVV2Validation(String cvv2) {
+    public static void cardCVV2Validation(String cvv2) throws InvalidInputException {
         Pattern pattern = Pattern.compile("^\\d{3,4}");
         Matcher matcher = pattern.matcher(cvv2);
-
-        return matcher.find();
+        if (!matcher.find()){
+            throw new InvalidInputException("Invalid CVV2");
+        }
     }
 
     public static Discount chanceCircle(Buyer buyer) throws OutOfCreditException {

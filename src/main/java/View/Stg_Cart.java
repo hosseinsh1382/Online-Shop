@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 public class Stg_Cart {
     VBox vBox_Cart = new VBox();
     VBox vBox_SidePanel = new VBox();
+    Stage stage = new Stage();
 
     public void show() {
         CartItem cartItem = new CartItem(new Food("a", 34, 10, 1401, 1403), 2);
@@ -73,7 +74,6 @@ public class Stg_Cart {
 
         Scene scene = new Scene(root, 1030, 480);
 
-        Stage stage = new Stage();
         stage.setTitle("Cart");
         stage.setScene(scene);
         stage.show();
@@ -325,6 +325,10 @@ public class Stg_Cart {
             btn_IncreaseCredit.setTextFill(Color.BLACK);
             btn_IncreaseCredit.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(30), new BorderWidths(1))));
             btn_IncreaseCredit.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(30), new Insets(0))));
+        });
+        btn_IncreaseCredit.setOnMouseClicked(event ->{
+            new Stg_PaymentGateway().show();
+            stage.close();
         });
         btn_AddDiscount.setOnMouseEntered(event -> {
             btn_AddDiscount.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(30), new Insets(0))));
