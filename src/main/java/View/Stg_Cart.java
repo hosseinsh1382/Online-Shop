@@ -28,9 +28,6 @@ public class Stg_Cart {
     Stage stage = new Stage();
 
     public void show() {
-        CartItem cartItem = new CartItem(new Food("a", 34, 10, 1401, 1403), 2);
-        ((Buyer) UserController.getLoggedInUser()).getCart().add(cartItem);
-
 
         vBox_Cart.setPrefSize(580, 480);
         vBox_Cart.setAlignment(Pos.BASELINE_CENTER);
@@ -290,15 +287,18 @@ public class Stg_Cart {
 
         });
         btn_Buy.setOnMouseClicked(event -> {
-            try {
-                BuyerController.finalizeBuy();
-                vBox_Cart.getChildren().clear();
-                vBox_SidePanel.getChildren().clear();
-                showCartItems();
-                showSidePanel();
-            } catch (OutOfCreditException e) {
-                new Stg_Error().show(e.getMessage());
+            if (!UserController.getLoggedInUser().getUsername().equals("null")) {
+                try {
+                    BuyerController.finalizeBuy();
+                    vBox_Cart.getChildren().clear();
+                    vBox_SidePanel.getChildren().clear();
+                    showCartItems();
+                    showSidePanel();
+                } catch (OutOfCreditException e) {
+                    new Stg_Error().show(e.getMessage());
+                }
             }
+            else new Stg_Error().show("Please Sign in first!");
         });
         btn_Cancel.setOnMouseEntered(event -> {
             btn_Cancel.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(30), new Insets(0))));
@@ -326,7 +326,7 @@ public class Stg_Cart {
             btn_IncreaseCredit.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(30), new BorderWidths(1))));
             btn_IncreaseCredit.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(30), new Insets(0))));
         });
-        btn_IncreaseCredit.setOnMouseClicked(event ->{
+        btn_IncreaseCredit.setOnMouseClicked(event -> {
             new Stg_PaymentGateway().show();
             stage.close();
         });

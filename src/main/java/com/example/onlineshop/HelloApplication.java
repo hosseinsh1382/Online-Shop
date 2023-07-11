@@ -31,15 +31,6 @@ public class HelloApplication extends Application {
 
         Comment comment = new Comment(pc.getID(), "good quality", true, buyer);
         pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
-        pc.getComments().add(comment);
 
         StuffController.getStuffs().add(ssd);
         StuffController.getStuffs().add(pc);
