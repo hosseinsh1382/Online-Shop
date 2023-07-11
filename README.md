@@ -37,3 +37,5 @@
 - [x] Finalize buy
 - [ ] Create discount
 </div>
+
+#### README will be updated
